@@ -1,0 +1,5 @@
+<h1>this is admin project page</h1>
+<%= @proj.project_name %>
+<% @proj.tasks.each do |tasks| %>
+	<%= tasks.task_name %>
+<% end %>

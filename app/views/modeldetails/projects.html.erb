@@ -1,0 +1,6 @@
+<h1>projects details </h1>
+<h4>total no of Projects - <%= Project.all.count %></h4>
+
+<% @projects.each do |project| %>
+	<div><%= link_to project.project_name, projectshow_admins_path(project) %><br><br></div>
+<% end %>

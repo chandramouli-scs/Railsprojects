@@ -1,0 +1,7 @@
+<h1>Organisations details </h1>
+<h4>total no of organizations - <%= Organisation.all.count %></h4>
+
+<% @organisations.each do |organisation| %>
+	<%= link_to organisation.organisation_name, organisation_path(organisation) %><br>
+	<%= organisation.created_at %><br>
+<% end %>

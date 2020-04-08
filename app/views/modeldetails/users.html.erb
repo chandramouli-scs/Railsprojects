@@ -1,0 +1,6 @@
+<h1>users details </h1>
+<h4>total no of users - <%= User.all.count %></h4>
+
+<% @users.each do |user| %>
+	<%= user.user_name %><br><br>
+<% end %>

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project name - </strong>
+  <%= @project.project_name %>
+</p>
+
+<div>
+	<h4>Tasks assign to this project</h4>
+	<% @project.tasks.each do |proj| %>
+		<p><%= proj.task_name %></p>
+	<% end %>
+</div>
+
+
+

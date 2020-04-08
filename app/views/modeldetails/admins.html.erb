@@ -1,0 +1,8 @@
+<h1>details of admins</h1>
+
+
+<h4>total no of Admin/s - <%= Admin.all.count %></h4>
+<% @admins.each do |admin| %>
+	<%= admin.email %><br>
+	<%= admin.created_at %><br>
+<% end %>
