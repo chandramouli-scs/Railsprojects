@@ -2,6 +2,10 @@ class ModeldetailsController < ApplicationController
   before_action :authenticate_admin!
   def admins
     @admins = Admin.all
+    respond_to do |format|
+      format.html 
+      format.csv { send_data @admins.to_csv }
+    end
   end
 
   def users
@@ -10,6 +14,10 @@ class ModeldetailsController < ApplicationController
 
   def organisations
     @organisations = Organisation.all
+    respond_to do |format|
+      format.html 
+      format.csv { send_data @organisations.to_csv }
+    end
   end
 
   def projects
