@@ -3,10 +3,11 @@ class Project < ApplicationRecord
   has_many :tasks
   belongs_to :organisation
   def self.to_csv
+    attributes = %w{id project_name}
 		CSV.generate do |csv|
-  		csv << column_names
+  		csv << attributes
   		all.each do |project|
-  			csv << project.attributes.values_at(*column_names)
+  			csv << project.attributes.values_at(*attributes)
   		end
   	end
   end

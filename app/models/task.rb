@@ -5,10 +5,11 @@ class Task < ApplicationRecord
   validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\z/
 
   def self.to_csv
+    attributes = %w{id task_name}
 		CSV.generate do |csv|
-  		csv << column_names
+  		csv << attributes
   		all.each do |task|
-  			csv << task.attributes.values_at(*column_names)
+  			csv << task.attributes.values_at(*attributes)
   		end
   	end
   end

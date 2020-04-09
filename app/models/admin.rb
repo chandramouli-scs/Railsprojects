@@ -5,10 +5,11 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def self.to_csv
+    attributes = %w{id email}
   	CSV.generate do |csv|
-  		csv << column_names
+  		csv << attributes
   		all.each do |admin|
-  			csv << admin.attributes.values_at(*column_names)
+  			csv << admin.attributes.values_at(*attributes)
   		end
   	end
   end

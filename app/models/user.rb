@@ -8,10 +8,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def self.to_csv
+    attributes = %w{id email first_name last_name phone_number user_name}
 		CSV.generate do |csv|
-  		csv << column_names
+  		csv << attributes
   		all.each do |user|
-  			csv << user.attributes.values_at(*column_names)
+  			csv << user.attributes.values_at(*attributes)
   		end
   	end
   end
