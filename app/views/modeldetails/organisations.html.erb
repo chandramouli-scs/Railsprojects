@@ -5,3 +5,5 @@
 	<%= link_to organisation.organisation_name, organisation_path(organisation) %><br>
 	<%= organisation.created_at %><br>
 <% end %>
+
+<span><%= link_to "export", organisations_admins_path(format: "csv"), class: 'btn btn-primary' %></span>

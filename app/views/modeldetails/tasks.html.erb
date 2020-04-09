@@ -4,3 +4,5 @@
 <% @tasks.each do |task| %>
 	<%= task.task_name %><br><br>
 <% end %>
+
+<span><%= link_to "export", tasks_admins_path(format: "csv"), class: 'btn btn-primary' %></span>

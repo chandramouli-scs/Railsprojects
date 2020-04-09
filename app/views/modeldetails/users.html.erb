@@ -4,3 +4,5 @@
 <% @users.each do |user| %>
 	<%= user.user_name %><br><br>
 <% end %>
+
+<span><%= link_to "export", users_admins_path(format: "csv"), class: 'btn btn-primary' %></span>

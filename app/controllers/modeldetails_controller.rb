@@ -10,6 +10,10 @@ class ModeldetailsController < ApplicationController
 
   def users
     @users = User.all
+    respond_to do |format|
+      format.html 
+      format.csv { send_data @users.to_csv }
+    end
   end
 
   def organisations
@@ -22,6 +26,10 @@ class ModeldetailsController < ApplicationController
 
   def projects
     @projects = Project.all
+    respond_to do |format|
+      format.html 
+      format.csv { send_data @projects.to_csv }
+    end
     
   end
 
@@ -31,5 +39,9 @@ class ModeldetailsController < ApplicationController
 
   def tasks
     @tasks = Task.all
+    respond_to do |format|
+      format.html 
+      format.csv { send_data @tasks.to_csv }
+    end
   end
 end

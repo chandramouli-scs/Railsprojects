@@ -6,3 +6,8 @@
 	<%= admin.email %><br>
 	<%= admin.created_at %><br>
 <% end %>
+
+	<div >
+	<%= link_to "export", details_admins_path(format: "csv"), class: 'btn btn-primary' %>
+		
+	</div>

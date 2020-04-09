@@ -4,3 +4,5 @@
 <% @projects.each do |project| %>
 	<div><%= link_to project.project_name, projectshow_admins_path(project) %><br><br></div>
 <% end %>
+
+<span><%= link_to "export", projects_admins_path(format: "csv"), class: 'btn btn-primary' %></span>
