@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'modeldetails/admins', as: 'details_admins'
+  get 'admins/organisationsspec', to: 'modeldetails#organisationsview', as: 'organisationspec'
+  get 'admins/projectsspec', to: 'modeldetails#projectsview', as: 'projectsspec'
   get 'modeldetails/users', as: 'users_admins'
   get 'modeldetails/organisations', as: 'organisations_admins'
   get 'modeldetails/projects', as: 'projects_admins'

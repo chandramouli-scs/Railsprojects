@@ -1,0 +1,18 @@
+<h1>This is project special view</h1>
+
+<div class="row">
+	<% Project.all.each do |proj| %>
+  <div class="col-sm-4 mb-3 ">
+    <div class="card ">
+    	<div class="card-header text-white text-center bg-info"><h4><%= proj.project_name.upcase %></h4></div>
+      <div class="card-body text-center">
+      	<h5><strong>Tasks:</strong></h5>
+        <% proj.tasks.all.each do |task| %>
+        <p class="card-text"><%= task.task_name %></p>
+        <% end %>
+        <%= link_to "view", projectshow_admins_path(proj), class: "btn btn-dark" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<h1>this is organisation special view</h1>
+
+<div class="row">
+	<% Organisation.all.each do |organisation| %>
+  <div class="col-sm-6 mb-3 ">
+    <div class="card ">
+    	<div class="card-header text-white text-center bg-info"><h4><%= organisation.organisation_name.upcase %></h4></div>
+      <div class="card-body text-center">
+      	<h5><strong>Projects:</strong></h5>
+        <% organisation.projects.all.each do |proj| %>
+        <p class="card-text"><%= proj.project_name %></p>
+        <% end %>
+        <%= link_to "view", organisation_path(organisation), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
