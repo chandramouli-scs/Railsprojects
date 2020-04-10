@@ -1,13 +1,24 @@
-<h1>details of admins</h1>
+<h2><p class="mx-5 mt-4 mb-4">Admins - <%= Admin.all.count %></p></h2>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Admin Email</th>
+      <th scope="col">Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @admins.each do |admin| %>
+	    <tr>
+	 	  <td><%= admin.id %></td>
+	 	  <td><%= admin.email %></td>
+	      <td><%= admin.created_at %></td>
+	    </tr>
+	 <% end %>
+   </tbody>
+</table>
 
-<h4>total no of Admin/s - <%= Admin.all.count %></h4>
-<% @admins.each do |admin| %>
-	<%= admin.email %><br>
-	<%= admin.created_at %><br>
-<% end %>
-
-	<div >
-	<%= link_to "export", details_admins_path(format: "csv"), class: 'btn btn-primary' %>
-		
-	</div>
+<div >
+	<%= link_to "Export to CSV", details_admins_path(format: "csv"), class: 'btn btn-primary' %>
+</div>

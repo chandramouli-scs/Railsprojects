@@ -1,6 +1,23 @@
-<h1>Organisation#show</h1>
+<h1 class="pl-5 pt-4 pb-4">Users of <%= @organisation.organisation_name %> </h1>
+<h3></h3>
+<table class="table table-striped">
+  <thead class="bg-dark">
+    <tr>
+      <th scope="col"><span class="text-white">id</span></th>
+      <th scope="col"><span class="text-white">User Name</span></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @organisation.users.each do |user| %>
+	    <tr>
+	      <td><%= user.id %></td>
+	      <td><%= user.user_name %></span></td>
+	    </tr>
+	<% end %>
+  </tbody>
+</table>
 
-<%= @organisation.organisation_name %><br>
-<% @organisation.users.each do |user| %>
-<%= user.user_name %>
-<% end %>
+
+
+
+

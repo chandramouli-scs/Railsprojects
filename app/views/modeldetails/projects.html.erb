@@ -1,8 +1,22 @@
-<h1>projects details </h1>
-<h4>total no of Projects - <%= Project.all.count %></h4>
+<h2><p class="mx-5 mt-4 mb-4">Projects - <%= Project.all.count %></p></h2>
 
-<% @projects.each do |project| %>
-	<div><%= link_to project.project_name, projectshow_admins_path(project) %><br><br></div>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Project name</th>
+      <th scope="col">Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @projects.each do |project| %>
+	    <tr>
+	 	  <td><%= project.id %></td>
+	 	  <td><%= link_to project.project_name, projectshow_admins_path(project) %></td>
+	      <td><%= project.created_at %></td>
+	    </tr>
+	 <% end %>
+   </tbody>
+</table>
 
-<span><%= link_to "export", projects_admins_path(format: "csv"), class: 'btn btn-primary' %></span>
+<span><%= link_to "Export to CSV", projects_admins_path(format: "csv"), class: 'btn btn-primary' %></span>

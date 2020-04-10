@@ -1,0 +1,37 @@
+<%= form_for @organisation  do |form| %>
+  <% if @organisation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+      <ul>
+        <% @organisation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 	<div class="row">
+	  	<div class="form-group col-md-6">
+	    	<label><strong>Organisation Name</strong></label>
+	    	<%= form.text_field :organisation_name, class: "form-control" %>
+		  	<div class="m-5 text-center">
+	    		<%= form.submit "create Organisation", class: "btn btn-success" %>
+	  		</div>
+	  	</div>
+	  	<div class="form-group col-md-6" style='padding-left:180px'>
+	  		<div class="card" style="width: 18rem;">
+	  			<div class="card-header bg-info">
+	    			<span class="text-white">Created Organisations</span>
+	  			</div>
+	  			<ul class="list-group list-group-flush">
+	  				<% @orgs.each do |orgs| %>
+	    				<li class="list-group-item"><strong><%= orgs.organisation_name.upcase %></strong></li>
+	    			<% end %>
+	  			</ul>
+			</div>
+	    </div>
+  	</div>
+    
+  
+<% end %>

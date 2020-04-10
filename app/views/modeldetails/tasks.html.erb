@@ -1,8 +1,22 @@
-<h1>tasks details </h1>
-<h4>total no of tasks - <%= Task.all.count %></h4>
+<h2><p class="mx-5 mt-4 mb-4">Tasks - <%= Task.all.count %></p></h2>
 
-<% @tasks.each do |task| %>
-	<%= task.task_name %><br><br>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Task name</th>
+      <th scope="col">Attachment</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @tasks.each do |task| %>
+	    <tr>
+	 	  <td><%= task.id %></td>
+	 	  <td><%= task.task_name %></td>
+	      <td><%= image_tag task.attachment.url(:thumb) %></td>
+	    </tr>
+	 <% end %>
+   </tbody>
+</table>
 
-<span><%= link_to "export", tasks_admins_path(format: "csv"), class: 'btn btn-primary' %></span>
+<p class="mb-4"><%= link_to "Export to CSV", tasks_admins_path(format: "csv"), class: 'btn btn-primary' %></p>

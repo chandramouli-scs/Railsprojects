@@ -1,25 +1,60 @@
-<h1>Admin dashboard</h1>
-<h3><%= link_to "Create new organisation", new_organisation_path %></h3>
+<h1 class="mx-5 mt-4 mb-4">Admin dashboard</h1>
+<h4><%= link_to "+ Create new organisation", new_organisation_path, class: "btn btn-primary", style: "margin-left: 800px" %></h4>
 
-	<div>
-		<%= link_to "Admins", details_admins_path %>
-	</div>
+<div class="row " style="margin-left: 80px">
+<div class="form-group col-md-9 mt-4">
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">s.no</th>
+      <th scope="col">Models</th>
+      <th scope="col">Records present in Model</th>
 
-	<div>
-		<%= link_to "Users", users_admins_path %>
-	</div>
-
-	<div>
-		<%= link_to "Organisations", organisations_admins_path %>
-	</div>
-
-	<div>
-		<%= link_to "Projects", projects_admins_path %>
-	</div>
-
-	<div>
-		<%= link_to "Tasks", tasks_admins_path %>
-	</div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><%= link_to "Admins", details_admins_path %></td>
+      <td><%= Admin.all.count %> Records</td>
+    </tr>
+    <tr>
+      <td >2</td>
+      <td><%= link_to "Users", users_admins_path %></td>
+      <td><%= User.all.count %> Records</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td ><%= link_to "Organisations", organisations_admins_path %></td>
+      <td><%= Organisation.all.count %> Records</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td ><%= link_to "Projects", projects_admins_path %></td>
+      <td><%= Project.all.count %> Records</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td ><%= link_to "Tasks", tasks_admins_path %></td>
+      <td><%= Task.all.count %> Records</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="form-group col-md-3 mt-5" style="margin-left: -110px">
+	<div class="card" style="width: 18rem;">
+  <div class="card-header bg-warning">
+  	Users exist (<%= User.all.count %>)
+  </div>
+  <ul class="list-group list-group-flush">
+  <% User.all.each do |user| %>
+    <li class="list-group-item"><strong><%= user.user_name %></strong></li>
+  <% end %>
+  </ul>
+</div>
+	
+</div>
+</div>
 
 	
 

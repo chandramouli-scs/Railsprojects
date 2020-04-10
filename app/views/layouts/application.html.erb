@@ -12,7 +12,7 @@
     <header>
   <!-- navbar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PMS</a>
+    <%= link_to "PMS", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,13 +31,21 @@
         <!-- Login and Logout buttons -->
         <% if current_user %>
           <span class="text-white"><strong><%= current_user.user_name %></strong></span> || 
-          <span class="btn btn-danger text-white"><%= link_to "Logout user", destroy_user_session_path, method: :delete, class: "text-white" %> </span>
+          <span ><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "text-white btn btn-danger" %> </span>
         <% elsif current_admin %>
-          <span class="text-white"><strong><%= current_admin.email %></strong></span> ||
-          <span class="btn btn-danger "><%= link_to "Logout admin", destroy_admin_session_path, method: :delete, class: "text-white" %></span>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <strong><%= current_admin.email %></strong>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_admin_registration_path, class: "btn" %></button>
+            <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %></button>
+          </div>
+        </div>
+          || <span ><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "text-white btn btn-danger" %></span>
         <% else %>
-          <span class="btn btn-success"><%= link_to "Log-in user", new_user_session_path, class: "text-white" %></span> ||
-          <span class="btn btn-success"><%= link_to "Log-in admin", new_admin_session_path, class: "text-white" %></span>
+          <span><%= link_to "Log-in user", new_user_session_path, class: "text-white btn btn-success" %></span> ||
+          <span><%= link_to "Log-in admin", new_admin_session_path, class: "text-white btn btn-success" %></span>
         <% end %>
       </span>
     </div>

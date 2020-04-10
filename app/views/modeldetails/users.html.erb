@@ -1,8 +1,28 @@
-<h1>users details </h1>
-<h4>total no of users - <%= User.all.count %></h4>
+<h2><p class="mx-5 mt-4 mb-4">Users - <%= User.all.count %></p></h2>
 
-<% @users.each do |user| %>
-	<%= user.user_name %><br><br>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">User Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @users.each do |user| %>
+	    <tr>
+	 	  <td><%= user.id %></td>
+	      <td><%= user.user_name %></td>
+	      <td><%= user.first_name %></td>
+	      <td><%= user.last_name %></td>
+	      <td><%= user.email %></td>
+	      <td><%= user.phone_number %></td>
+	    </tr>
+	 <% end %>
+   </tbody>
+</table>
 
-<span><%= link_to "export", users_admins_path(format: "csv"), class: 'btn btn-primary' %></span>
+<span><%= link_to "Export to CSV", users_admins_path(format: "csv"), class: 'btn btn-primary' %></span>
