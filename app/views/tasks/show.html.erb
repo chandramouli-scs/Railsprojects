@@ -1,6 +1,19 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<p>
+  
+</p>
+<center>
+<div>
+	<h4 class="mb-5 mt-4 ml-3"><strong>Task name - </strong>
+  	<%= @task.task_name %></h4>
+</div>
+<div>
+	<h4 class="mb-5 mt-4 ml-3"><strong>Task attachment - </strong> <%= image_tag @task.attachment.url(:thumb) %></h4>
+</div>
+<div>
+	<h4><strong>This task is assigned to </strong> <%= @task.project.project_name.upcase %> Project</h4>
+</div>
+</center>
 
 
-<%= image_tag @task.attachment.url(:medium) %>
-<%= image_tag @task.attachment.url(:thumb) %>
+
+<!--<%= image_tag @task.attachment.url(:medium) %> -->

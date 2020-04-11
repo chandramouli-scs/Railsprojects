@@ -29,13 +29,21 @@
           <%= link_to "Projects", projectsspec_path, class: "nav-link" %>
         </li>
         <% end %>
+        <% if current_user %>
+          <li class="nav-item active">
+          <%= link_to "Projects",  dashboard_projectsdash_path , class: "nav-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Tasks",  dashboard_tasksdash_path , class: "nav-link" %>
+        </li>
+        <% end %>
       </ul>
       <span class="mt-2 mt-md-0"> 
         <!-- Login and Logout buttons -->
         <% if current_user %>
           <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <strong><%= current_user.user_name %></strong>
+              <strong><%= current_user.user_name.upcase %></strong>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_user_registration_path, class: "btn" %></button>

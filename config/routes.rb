@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'modeldetails/organisations', as: 'organisations_admins'
   get 'modeldetails/projects', as: 'projects_admins'
   get 'modeldetails/tasks', as: 'tasks_admins'
+  get 'dashboard/projectsdash', to: 'dashboard#projectsdash'
+  get 'dashboard/tasksdash', to: 'dashboard#tasksdash'
   get 'modeldetails/project_show/:id', to: 'modeldetails#project_show', as: 'projectshow_admins'
   devise_for :admins, path: 'admins', controllers: {
         sessions: 'admins/sessions', registrations: 'admins/registrations', passwords: 'admins/passwords'

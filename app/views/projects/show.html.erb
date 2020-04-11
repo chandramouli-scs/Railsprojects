@@ -1,16 +1,20 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Project name - </strong>
-  <%= @project.project_name %>
+  <h4 class="mb-5 mt-4 ml-3"><strong>Project name - </strong>
+  <%= @project.project_name %></h4>
 </p>
 
-<div>
-	<h4>Tasks assign to this project</h4>
-	<% @project.tasks.each do |proj| %>
-		<p><%= proj.task_name %></p>
-	<% end %>
-</div>
+<div class="row">
+  <div class="col-sm-12 mb-3 ">
+    <div class="card ">
+    	<div class="card-header text-white text-center bg-info"><h4>Tasks for <%= @project.project_name %> Project (<%= @project.tasks.count %>) </h4></div>
+      <div class="card-body text-center">
+      	<h5><strong>Tasks:</strong></h5>
+        <% @project.tasks.each do |proj| %>
+        <p class="card-text"><strong><%= link_to proj.task_name, task_path(proj), class: "text-danger" %></strong></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
 
 

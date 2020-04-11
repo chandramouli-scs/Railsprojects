@@ -1,0 +1,26 @@
+<h1 class="mx-5 mt-4 mb-4">Total no of Projects <%= current_user.projects.count %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Project name</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% current_user.projects.each do |proj| %>
+	    <tr>
+	 	  <td><%= proj.id %></td>
+	 	  <td><%= link_to proj.project_name, project_path(proj) %></td>
+	      <td><%= proj.created_at %></td>
+	      <td>
+	      	<%= link_to "Edit", edit_project_path(proj) %>
+	      	<%= link_to "Delete",  project_path(proj), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-1" %>
+	      </td>
+	    </tr>
+	 <% end %>
+   </tbody>
+</table>
+

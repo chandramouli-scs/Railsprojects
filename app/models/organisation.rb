@@ -1,6 +1,6 @@
 class Organisation < ApplicationRecord
-	has_many :users
-	has_many :projects
+	has_many :users, dependent: :destroy
+	has_many :projects, dependent: :destroy
 
 	def self.to_csv
 		attributes = %w{id organisation_name}

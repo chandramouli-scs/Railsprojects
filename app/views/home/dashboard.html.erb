@@ -12,7 +12,7 @@
 		  </div>
 		  <div class="card-body">
 		  	<% if current_user.projects.count == 0 %>
-		  		<h5>No projects for you, Create one now</h5>
+		  		<h5>No projects, Create one now</h5>
 		  	<% else %>
 		  	<% current_user.projects.each do |pro| %>
 		    	<h5 class="card-title"><%= link_to pro.project_name, project_path(pro) %></h5>

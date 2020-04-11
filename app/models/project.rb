@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   belongs_to :organisation
   def self.to_csv
     attributes = %w{id project_name}
