@@ -11,7 +11,8 @@
   <body>
     <header>
   <!-- navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary py-3">
+    <div class="container">
     <%= link_to "PMS", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,7 +43,7 @@
         <!-- Login and Logout buttons -->
         <% if current_user %>
           <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <strong><%= current_user.user_name.upcase %></strong>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
@@ -52,7 +53,7 @@
           </div>
         <% elsif current_admin %>
         <div class="btn-group">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <strong><%= current_admin.email %></strong>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
@@ -60,15 +61,52 @@
             <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %></button>
           </div>
         </div>
-          || <span ><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "text-white btn btn-danger" %></span>
         <% else %>
-          <span><%= link_to "Log-in user", new_user_session_path, class: "text-white btn btn-success" %></span> ||
-          <span><%= link_to "Log-in admin", new_admin_session_path, class: "text-white btn btn-success" %></span>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <strong>Log-in</strong>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button"><%= link_to "User", new_user_session_path, class: "btn " %></button>
+            <button class="dropdown-item " type="button"><%= link_to "Admin", new_admin_session_path, class: "btn" %></button>
+          </div>
+        </div>
+        <div class="btn-group ml-2 mr-2">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <strong>Register</strong>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button"><%= link_to "User", new_user_registration_path, class: "btn" %></button>
+            <button class="dropdown-item " type="button"><%= link_to "Admin", new_admin_registration_path, class: "btn" %></button>
+          </div>
+        </div>
         <% end %>
       </span>
     </div>
+  </div>
   </nav>
 </header>
-    <div class="container"><%= yield %></div>
+<div class="container"><%= yield %></div>
+<br>
+<br>
+<br>
+<footer class="footer py-3 bg-dark">
+      <div class="container">
+        <div class="container">
+          <p class = "text-center text-white">Copyright-2020 Sykam</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
+
+<style >
+  .footer {
+position: fixed;
+bottom: 0;
+width: 100%;
+}
+</style>
+
+
+

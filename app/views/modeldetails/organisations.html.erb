@@ -13,11 +13,11 @@
   	<% @organisations.each do |organisation| %>
 	    <tr>
 	 	  <td><%= organisation.id %></td>
-	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation) %></td>
+	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
 	      <td><%= organisation.created_at %></td>
 	      <td>
 	      	<span class="glyphicon glyphicon-edit"></span> <%= link_to "Edit", edit_organisation_path(organisation) %>
-	      	<%= link_to "Delete",  organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure to Delete?' } %>
+	      	<%= link_to "Delete",  organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-2" %>
 	      </td>
 	    </tr>
 	 <% end %>
