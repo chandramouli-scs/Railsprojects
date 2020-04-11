@@ -1,25 +1,2 @@
-<%= form_with model: @project  do |form| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-        <% @project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :project_name %>
-    <%= form.text_field :project_name %>
-  </div>
-
-
-
-  
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<h1 class="mx-5 mt-4 mb-4">Edit Project</h1>
+<%= render 'form' %>

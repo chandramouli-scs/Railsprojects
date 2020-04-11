@@ -1,4 +1,4 @@
-<h1>this is organisation special view</h1>
+<h1 class="mx-5 mt-4 mb-4">Total no of Organisations <%= Organisation.all.count %></h1>
 
 <div class="row">
 	<% Organisation.all.each do |organisation| %>
@@ -6,11 +6,11 @@
     <div class="card ">
     	<div class="card-header text-white text-center bg-info"><h4><%= organisation.organisation_name.upcase %></h4></div>
       <div class="card-body text-center">
-      	<h5><strong>Projects:</strong></h5>
+      	<h5><strong>Projects (<%= organisation.projects.count %>):</strong></h5>
         <% organisation.projects.all.each do |proj| %>
         <p class="card-text"><%= proj.project_name %></p>
         <% end %>
-        <%= link_to "view", organisation_path(organisation), class: "btn btn-primary" %>
+        <%= link_to "view", organisation_path(organisation), class: "btn btn-dark" %>
       </div>
     </div>
   </div>

@@ -17,6 +17,20 @@ class TasksController < ApplicationController
   	end
   end
 
+  def edit
+    @task = current_user.tasks.find(params[:id])
+    @user = current_user
+  end
+
+  def update
+    @task = current_user.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @task = current_user.tasks.find(params[:id])
   end

@@ -11,21 +11,40 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :project_name %>
-    <%= form.text_field :project_name %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <div class="field">
+        <%= form.label :project_name %>
+        <%= form.text_field :project_name, class: "form-control" %>
+        <br>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :organisation_id, :value =>  current_user.organisation.id  %>
+        <span> <strong>Organisation - <%= current_user.organisation.organisation_name %></strong> </span>
+        <br>
+      </div>
+      <div class="actions">
+        <br>
+        <% if action_name == 'new' %>
+          <%= form.submit "Create", class: "btn btn-success btn-block" %>
+        <% else %>
+          <%= form.submit "Update", class: "btn btn-success btn-block" %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div class="form-group col-md-6" style='padding-left:180px'>
+      <div class="card" style="width: 18rem;">
+        <div class="card-header bg-info">
+          <span class="text-white">Created Projects</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% current_user.projects.each do |orgs| %>
+            <li class="list-group-item"><strong><%= orgs.project_name %></strong></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-
-    <div class="field">
-    <%= form.hidden_field :organisation_id, :value =>  current_user.organisation.id  %>
-     <span>Organisation name - <%= current_user.organisation.organisation_name %> </span>
-   
-  </div>
-
-
 
   
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

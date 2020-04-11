@@ -1,17 +1,42 @@
-</br>
-<center><h3>This is dashboard <%= current_user.user_name %></h3></center>
-<center><strong><%= link_to "Create new Project", new_project_path %><br></strong><strong><%= link_to "Create new Task", new_task_path %></strong></center>
-
 <div>
-	<h4>Total no of Projects created - <%= current_user.projects.count %></h4>
-	<% current_user.projects.each do |pro| %>
-	<p><%= link_to pro.project_name, project_path(pro) %></p>
-	<% end %>
+<h1 class="mx-5 mt-4 mb-4"><%= current_user.organisation.organisation_name.upcase %> Organisation</h1> 
 </div>
+<center><strong><br></strong><strong></strong></center>
 
-<div>
-	<h4>Total number of Tasks - <%= current_user.tasks.count %></h4>
-	<% current_user.tasks.each do |task| %>
-	<p><%= link_to task.task_name, task_path(task) %></p>
-	<% end %>
+<div class="row">
+	<div class="col-sm-6">
+		<strong><%= link_to "+ Create new Project", new_project_path, class: "btn btn-info btn-block mb-3" %></strong>
+		<div class="card text-center">
+		  <div class="card-header bg-warning">
+		    <h5>Projects (<%= current_user.projects.count %>)</h5>
+		  </div>
+		  <div class="card-body">
+		  	<% if current_user.projects.count == 0 %>
+		  		<h5>No projects for you, Create one now</h5>
+		  	<% else %>
+		  	<% current_user.projects.each do |pro| %>
+		    	<h5 class="card-title"><%= link_to pro.project_name, project_path(pro) %></h5>
+			<% end %>
+			<% end %>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-sm-6">
+		<strong><%= link_to "+ Create new Task", new_task_path, class: "btn btn-info btn-block mb-3" %></strong>
+		<div class="card text-center">
+		  <div class="card-header  bg-warning ">
+		    <h5>Tasks (<%= current_user.tasks.count %>)</h5>
+		  </div>
+		  <div class="card-body">
+		  	<% if current_user.tasks.count == 0 %>
+		  		<h5>No Tasks, Create one now </h5>
+		  	<% else %>
+		  	<% current_user.tasks.each do |task| %>
+		    	<h5 class="card-title"><%= link_to task.task_name, task_path(task) %></h5>
+			<% end %>
+			<% end %>
+		  </div>
+		</div>
+	</div>
 </div>

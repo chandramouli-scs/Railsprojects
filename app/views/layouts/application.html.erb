@@ -33,8 +33,15 @@
       <span class="mt-2 mt-md-0"> 
         <!-- Login and Logout buttons -->
         <% if current_user %>
-          <span class="text-white"><strong><%= current_user.user_name %></strong></span> || 
-          <span ><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "text-white btn btn-danger" %> </span>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <strong><%= current_user.user_name %></strong>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_user_registration_path, class: "btn" %></button>
+              <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></button>
+            </div>
+          </div>
         <% elsif current_admin %>
         <div class="btn-group">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

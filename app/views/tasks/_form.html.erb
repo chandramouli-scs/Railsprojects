@@ -1,0 +1,37 @@
+<%= form_for @task, html: { multipart: true } do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :task_name %>
+    <%= form.text_field :task_name, class: "form-control" %>
+    <br>
+  </div>
+  <div>
+    <strong><%= form.label :Project %></strong>
+    <%= form.select :project_id, current_user.projects.map  { |m1| [m1.project_name, m1.id]} %> 
+  </div>
+
+  <div>
+    <br>
+    Attachment: <%= form.file_field :attachment %>
+  </div>
+  <br>
+    
+  <div class="actions">
+    <% if action_name == 'new' %>
+        <%= form.submit "Create", class: "btn btn-success btn-block" %>
+      <% else %>
+        <%= form.submit "Update", class: "btn btn-success btn-block" %>
+      <% end %>
+  </div>
+<% end %>
