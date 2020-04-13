@@ -2,6 +2,12 @@ class User < ApplicationRecord
 	has_many :projects, dependent: :destroy
 	has_many :tasks
 	belongs_to :organisation 
+  validates :user_name, :uniqueness => {:case_sensitive => false}
+  validates :user_name, presence: true
+  validates :email, :uniqueness => {:case_sensitive => false}, presence: true
+  validates :first_name,  presence: true
+  validates :last_name,  presence: true
+  validates :phone_number,  presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

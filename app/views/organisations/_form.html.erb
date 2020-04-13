@@ -1,11 +1,9 @@
 <%= form_for @organisation  do |form| %>
   <% if @organisation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
-
-      <ul>
+	  <ul>
         <% @organisation.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="text-danger"><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -25,7 +23,7 @@
 	    			<span class="text-white">Created Organisations</span>
 	  			</div>
 	  			<ul class="list-group list-group-flush">
-	  				<% @orgs.each do |orgs| %>
+	  				<% Organisation.all.each do |orgs| %>
 	    				<li class="list-group-item"><strong><%= orgs.organisation_name.upcase %></strong></li>
 	    			<% end %>
 	  			</ul>
@@ -35,3 +33,11 @@
     
   
 <% end %>
+
+<style >
+
+ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+</style>

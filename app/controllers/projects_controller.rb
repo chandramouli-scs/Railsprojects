@@ -34,6 +34,12 @@ class ProjectsController < ApplicationController
   	@project = current_user.projects.find(params[:id])
   end
 
+  def destroy
+     @project = current_user.projects.find(params[:id])
+     @project.destroy 
+    redirect_to dashboard_projectsdash_path, notice: 'User was successfully deleted.'
+  end
+
   private 
 
   def project_params

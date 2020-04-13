@@ -9,7 +9,6 @@ class OrganisationsController < ApplicationController
 
   def new
   	@organisation = Organisation.new
-    @orgs = Organisation.all
   end
 
   def create 

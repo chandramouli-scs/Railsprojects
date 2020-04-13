@@ -1,7 +1,15 @@
 <h2 class="mx-5 mt-4 mb-4">Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <% if resource.errors.any? %>
+    <div id="error_explanation ">
+      <ul >
+        <% resource.errors.full_messages.each do |message| %>
+          <li class="text-danger"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <div class="field">
     <%= f.label :Username %><br />
@@ -67,4 +75,10 @@
 
 <p>Unhappy? <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-lg" %></p>
 
-<%= link_to "Back", :back %>
+<style >
+
+ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+</style>
