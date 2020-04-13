@@ -10,11 +10,12 @@
       <div class="card-body text-center">
       	<h5><strong>Tasks:</strong></h5>
         <% @project.tasks.each do |proj| %>
-        <p class="card-text"><strong><%= link_to proj.task_name, task_path(proj), class: "text-danger" %></strong></p>
+        <p class="card-text">
+          <strong><%= link_to proj.task_name, task_path(proj), class: "text-danger" %></strong></p>
+          <% end %>
       </div>
     </div>
   </div>
-  <% end %>
 
 
 
