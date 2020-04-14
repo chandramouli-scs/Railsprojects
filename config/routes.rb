@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get 'admin/dashboard', to: 'home#admindashboard', as: 'admindashboard_home'
 
   resources :projects
-    resources :tasks
-  	resources :organisations
+  resources :tasks
+  resources :organisations
    
   devise_for :users, path: 'users', :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
