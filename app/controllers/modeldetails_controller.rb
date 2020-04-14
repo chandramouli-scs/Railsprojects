@@ -10,7 +10,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def users
-    @users = User.order(sort_column + " " + sort_direction)
+    @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ?","%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @users.to_csv }
