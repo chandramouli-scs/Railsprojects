@@ -9,9 +9,9 @@ class User < ApplicationRecord
   validates :last_name,  presence: true
   validates :phone_number,  presence: true
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  #:lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   def self.to_csv
     attributes = %w{id email first_name last_name phone_number user_name}
