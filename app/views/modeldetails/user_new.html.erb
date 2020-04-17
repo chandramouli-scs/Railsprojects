@@ -1,0 +1,68 @@
+<h1>Create user</h1>
+
+<%= form_for @user, url:{action:"user_create"} do |f| %>
+	<% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <ul>
+	        <% @user.errors.full_messages.each do |message| %>
+	          <li class="text-danger"><%= message %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+  <div class="field">
+    <%= f.label :Username %><br />
+    <%= f.text_field :user_name, class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :Firstname %><br />
+    <%= f.text_field :first_name, class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :Lastname %><br />
+    <%= f.text_field :last_name, class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :Phonenumber %><br />
+    <%= f.text_field :phone_number, class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <br>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :Organisation %>
+    <%= f.select :organisation_id, Organisation.all.map  { |m1| [m1.organisation_name, m1.id]}, class: 'form-control status' %> 
+    <br>
+  </div>
+  	<br>
+    <div class="actions">
+	    <br>
+	    <%= f.submit "Create user", class: "btn btn-success btn-block" %>
+  	</div>
+<% end %>

@@ -38,12 +38,152 @@ class ModeldetailsController < ApplicationController
     @proj = Project.find(params[:id])
   end
 
+  def project_new
+    @project = Project.new
+  end
+
+  def project_create
+    @project = Project.new(project_params)
+    if @project.save 
+      redirect_to root_path
+    else
+      render 'project_new'
+    end
+  end
+
+  def project_edit
+    @project = Project.find(params[:id])
+  end
+
+  def project_update
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      redirect_to root_path
+    else
+      render 'project_edit'
+    end
+  end
+
+  def project_destroy
+    @project = Project.find(params[:id])
+    @project.destroy 
+    redirect_to root_path, notice: 'Project was successfully deleted.'
+  end
+  
   def tasks
     @tasks = Task.order(sort_column + " " + sort_direction)
     respond_to do |format|
       format.html 
       format.csv { send_data @tasks.to_csv }
     end
+  end
+
+  def task_new
+    @task = Task.new
+  end
+
+  def task_create
+    @task= Task.new(task_params)
+    if @task.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
+  end
+
+  def task_edit
+    @task = Task.find(params[:id])
+  end
+
+  def task_update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_admins_path
+    else
+      render 'edit'
+    end
+  end
+
+  def task_show
+    @task = Task.find(params[:id])
+  end
+
+  def task_destroy
+    @task = Task.find(params[:id])
+    @task.destroy 
+    redirect_to root_path, notice: 'Task was successfully deleted.'
+  end
+
+  def admin_new
+    @admin = Admin.new
+  end
+
+  def admin_create
+    @admin = Admin.new(admin_params)
+    if @admin.save
+      redirect_to root_path
+    else
+      render 'admin_new'
+    end
+  end
+
+  def admin_edit
+    @admin = Admin.find(params[:id])
+  end
+
+  def admin_update
+    @admin = Admin.find(params[:id])
+    if @admin.update(admin_params)
+      redirect_to root_path
+    else
+      render 'admin_edit'
+    end
+  end
+
+  def admin_destroy
+    @admin = Admin.find(params[:id])
+    @admin.destroy 
+    redirect_to root_path, notice: 'Admin was successfully deleted.'    
+  end
+
+  def admin_show
+    @admin = Admin.find(params[:id])
+  end
+
+  def user_new
+    @user = User.new
+  end
+
+  def user_create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path, notice: 'confirmation mail has been send to created user'
+    else
+      render 'user_new'
+    end
+  end
+
+  def user_edit
+    @user = User.find(params[:id])
+  end
+
+  def user_update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path
+    else
+      render 'user_edit'
+    end
+  end
+
+  def user_show
+    @user = User.find(params[:id])
+  end
+
+  def user_destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path, notice: 'User was successfully deleted.'
   end
 
   private 
@@ -54,6 +194,22 @@ class ModeldetailsController < ApplicationController
 
   def sort_direction
     params[:direction] || "asc"
+  end
+
+  def project_params
+    params.require(:project).permit(:user_id, :project_name, :organisation_id)
+  end
+
+  def task_params
+    params.require(:task).permit(:task_name, :project_id, :user_id, :attachment)
+  end
+
+  def admin_params
+    params.require(:admin).permit(:email, :password, :password_confirmation)
+  end
+
+  def user_params
+    params.require(:user).permit(:user_name, :first_name, :last_name, :phone_number, :email, :password, :password_confirmation, :organisation_id)
   end
 
 end

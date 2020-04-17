@@ -1,5 +1,6 @@
 <div>
 <h2><p class="mx-5 mt-4 mb-4">Users - <%= User.all.count %></p></h2>
+<h4><%= link_to "+ Create new User",  ad_user_new_path, class: "btn btn-warning", style: "margin-left: 800px" %></h4>
 <%= form_tag users_admins_path, :method => 'get' do %>
 <%= text_field_tag :search, params[:search] %>
 <%= submit_tag("search", :name => nil, class: "btn btn-secondary btn-sm") %>
@@ -16,6 +17,7 @@
       <th scope="col"><%= sortable "last_name" %></th>
       <th scope="col"><%= sortable "email" %></th>
       <th scope="col"><%= sortable "phone_number" %></th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +29,10 @@
 	      <td><%= user.last_name %></td>
 	      <td><%= user.email %></td>
 	      <td><%= user.phone_number %></td>
+        <td>
+          <%= link_to "Edit", ad_user_edit_path(user) %>
+          <%= link_to "Delete", ad_user_show_path(user), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
+        </td>        
 	    </tr>
 	 <% end %>
    </tbody>
