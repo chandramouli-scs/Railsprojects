@@ -1,3 +1,9 @@
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+
+<div class="container ml-1">
+	<%= render 'notice' %>
 <h2 class="mx-5 mt-4 mb-4">Update Project </h2>
 
 <%= form_for @project, url:{action:"project_update"} do |f| %>
@@ -29,3 +35,7 @@
 	    <%= f.submit "Update project", class: "btn btn-success btn-block" %>
   	</div>
 <% end %>
+</div>
+</main>
+    </div>
+</div>

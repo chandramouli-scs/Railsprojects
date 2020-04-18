@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'create', to: 'modeldetails#project_create'
   patch 'update/:id', to: 'modeldetails#project_update'
   delete 'modeldetails/project_show/:id', to: 'modeldetails#project_destroy'
+  get 'modeldetails/project_details/:id', to: 'modeldetails#project_details', as: 'projectdetails_admins'
   #admin - task
   get 'modeldetails/task_show/:id', to: 'modeldetails#task_show', as: 'ad_task_show'
   get 'modeldetails/task_new', to: 'modeldetails#task_new', as: 'ad_task_new'
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
   get 'modeldetails/user_edit/:id', to: 'modeldetails#user_edit', as: 'ad_user_edit'
   patch 'update/user/:id', to: 'modeldetails#user_update' 
   delete 'modeldetails/user_show/:id', to: 'modeldetails#user_destroy'
+  #admin - organisation
+  get 'modeldetails/organisation_details/:id', to: 'organisations#organisation_details', as: 'organisationdetails_admins'
   # devise admins     
   devise_for :admins, path: 'admins', controllers: {
         sessions: 'admins/sessions', registrations: 'admins/registrations', passwords: 'admins/passwords'

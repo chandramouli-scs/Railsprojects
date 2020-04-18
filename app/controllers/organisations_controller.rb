@@ -14,7 +14,7 @@ class OrganisationsController < ApplicationController
   def create 
   	@organisation = Organisation.create(organisation_params)
   	if @organisation.save
-  		redirect_to admindashboard_home_path
+  		redirect_to organisationdetails_admins_path(@organisation), notice: 'Organisation was successfully Created.'
   	else
   		render 'new'
   	end
@@ -23,7 +23,7 @@ class OrganisationsController < ApplicationController
   def update
     @organisation = Organisation.find(params[:id])
     if @organisation.update(organisation_params)
-      redirect_to organisation_path
+      redirect_to organisationdetails_admins_path(@organisation), notice: 'Organisation was successfully Updated'
     else
       render 'edit'
     end
@@ -32,10 +32,14 @@ class OrganisationsController < ApplicationController
   def destroy
     @organisation = Organisation.find(params[:id])
     @organisation.destroy 
-    redirect_to organisations_admins_path, notice: 'User was successfully deleted.' 
+    redirect_to organisations_admins_path, notice: 'Organisation was successfully Deleted.' 
   end
 
   def show
+    @organisation = Organisation.find(params[:id])
+  end
+
+  def organisation_details
     @organisation = Organisation.find(params[:id])
   end
 

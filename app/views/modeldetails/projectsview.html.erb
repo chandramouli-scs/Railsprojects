@@ -1,3 +1,9 @@
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+
+<div class="container ml-1">
+  <%= render 'notice' %>
 <h1 class="mx-5 mt-4 mb-4">Total no of Projects <%= Project.all.count %></h1>
 <div class="row">
 	<% Project.all.each do |proj| %>
@@ -14,4 +20,8 @@
     </div>
   </div>
   <% end %>
+</div>
+</div>
+</main>
+    </div>
 </div>

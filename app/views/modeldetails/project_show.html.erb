@@ -1,3 +1,9 @@
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+
+<div class="container ml-1">
+  <%= render 'notice' %>
 <h4 class="pl-5 pt-4 pb-4"><%= @proj.project_name.upcase %> project has <%= @proj.tasks.count %> tasks </h4>
 <table class="table">
   <thead class="thead-dark">
@@ -17,3 +23,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</main>
+    </div>
+</div>

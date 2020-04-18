@@ -1,60 +1,49 @@
-<h1 class="mx-5 mt-4 mb-4">Admin dashboard</h1>
-<h4><%= link_to "+ Create new organisation", new_organisation_path, class: "btn btn-success", style: "margin-left: 800px" %></h4>
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+          <%= render partial: 'modeldetails/notice' %>
+          <h1 class="mx-5 mt-4 mb-4">Admin dashboard</h1>
+          <center>
+            <table class="table table-borderless " style="border-radius: 10px; overflow: hidden;border-collapse: collapse;" >
+              <thead class="bg-info" style="width: 50px">
+                <tr class="text-white">
+                  <td scope="col">s.no</td>
+                  <td scope="col">Model Name</td>
+                  <td scope="col">Records present in Model</td>
 
-<div class="row " style="margin-left: 80px">
-<div class="form-group col-md-9 mt-4">
-<table class="table table-borderless" style="width: 650px">
-  <thead class="bg-info" style="width: 50px">
-    <tr class="text-white">
-      <td scope="col">s.no</td>
-      <td scope="col">Models</td>
-      <td scope="col">Records present in Model</td>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><%= link_to "Admins", details_admins_path %></td>
-      <td><%= Admin.all.count %> Records</td>
-    </tr>
-    <tr>
-      <td >2</td>
-      <td><%= link_to "Users", users_admins_path %></td>
-      <td><%= User.all.count %> Records</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td ><%= link_to "Organisations", organisations_admins_path %></td>
-      <td><%= Organisation.all.count %> Records</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td ><%= link_to "Projects", projects_admins_path %></td>
-      <td><%= Project.all.count %> Records</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td ><%= link_to "Tasks", tasks_admins_path %></td>
-      <td><%= Task.all.count %> Records</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<div class="form-group col-md-3 mt-5" style="margin-left: -110px">
-	<div class="card" style="width: 18rem;">
-  <div class="card-header bg-warning">
-  	Users exist (<%= User.all.count %>)
-  </div>
-  <ul class="list-group list-group-flush">
-  <% User.all.each do |user| %>
-    <li class="list-group-item"><strong><%= user.user_name %></strong></li>
-  <% end %>
-  </ul>
-</div>
-	
-</div>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><%= link_to "Admins", details_admins_path %></td>
+                  <td><%= Admin.all.count %> Records</td>
+                </tr>
+                <tr>
+                  <td >2</td>
+                  <td><%= link_to "Users", users_admins_path %></td>
+                  <td><%= User.all.count %> Records</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td ><%= link_to "Organisations", organisations_admins_path %></td>
+                  <td><%= Organisation.all.count %> Records</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td ><%= link_to "Projects", projects_admins_path %></td>
+                  <td><%= Project.all.count %> Records</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td ><%= link_to "Tasks", tasks_admins_path %></td>
+                  <td><%= Task.all.count %> Records</td>
+                </tr>
+              </tbody>
+            </table>
+          </center>
+        </main>
+    </div>
 </div>
 
-	
 

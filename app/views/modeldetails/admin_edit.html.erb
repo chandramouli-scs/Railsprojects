@@ -1,5 +1,10 @@
-<h2 class="mx-5 mt-4 mb-4">Update admin </h2>
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
 
+<div class="container ml-1">
+    <%= render 'notice' %>
+	<h2 class="mx-5 mt-4 mb-4">Update admin </h2>
 <%= form_for @admin, url:{action:"admin_create"} do |f| %>
 	<% if @admin.errors.any? %>
 	    <div id="error_explanation">
@@ -29,6 +34,10 @@
   	<br>
     <div class="actions">
 	    <br>
-	    <%= f.submit "Create admin", class: "btn btn-success btn-block" %>
+	    <%= f.submit "Update admin", class: "btn btn-success btn-block" %>
   	</div>
 <% end %>
+</div>
+</main>
+    </div>
+</div>

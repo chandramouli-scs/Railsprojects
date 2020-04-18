@@ -1,3 +1,9 @@
+<div class="container-fluid">
+        <%= render partial: 'modeldetails/sidebar' %>
+        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+
+<div class="container ml-1">
+	<%= render 'notice' %>
 <h2 class="mx-5 mt-4 mb-4">Create Task</h2>
 
 <%= form_for @task, url:{action:"task_create"} do |f| %>
@@ -34,3 +40,7 @@
 	    <%= f.submit "Create task", class: "btn btn-success btn-block" %>
   	</div>
 <% end %>
+</div>
+</main>
+    </div>
+</div>

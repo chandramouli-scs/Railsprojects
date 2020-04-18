@@ -45,7 +45,7 @@ class ModeldetailsController < ApplicationController
   def project_create
     @project = Project.new(project_params)
     if @project.save 
-      redirect_to root_path
+      redirect_to  projectdetails_admins_path(@project), notice: 'Project was successfully Created'
     else
       render 'project_new'
     end
@@ -58,7 +58,7 @@ class ModeldetailsController < ApplicationController
   def project_update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      redirect_to root_path
+      redirect_to projectdetails_admins_path(@project), notice: 'Project was successfully Updated'
     else
       render 'project_edit'
     end
@@ -67,8 +67,13 @@ class ModeldetailsController < ApplicationController
   def project_destroy
     @project = Project.find(params[:id])
     @project.destroy 
-    redirect_to root_path, notice: 'Project was successfully deleted.'
+    redirect_to projects_admins_path, notice: 'Project was successfully deleted.'
   end
+
+  def project_details
+    @project = Project.find(params[:id])
+  end
+
   
   def tasks
     @tasks = Task.order(sort_column + " " + sort_direction)
@@ -85,7 +90,7 @@ class ModeldetailsController < ApplicationController
   def task_create
     @task= Task.new(task_params)
     if @task.save
-      redirect_to root_path
+      redirect_to ad_task_show_path(@task), notice: 'Task was successfully Created'
     else
       render 'new'
     end
@@ -98,7 +103,7 @@ class ModeldetailsController < ApplicationController
   def task_update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_admins_path
+      redirect_to ad_task_show_path(@task), notice: 'Task was successfully Updated'
     else
       render 'edit'
     end
@@ -111,7 +116,7 @@ class ModeldetailsController < ApplicationController
   def task_destroy
     @task = Task.find(params[:id])
     @task.destroy 
-    redirect_to root_path, notice: 'Task was successfully deleted.'
+    redirect_to tasks_admins_path, notice: 'Task was successfully deleted.'
   end
 
   def admin_new
@@ -121,7 +126,7 @@ class ModeldetailsController < ApplicationController
   def admin_create
     @admin = Admin.new(admin_params)
     if @admin.save
-      redirect_to root_path
+      redirect_to  ad_admin_show_path(@admin), notice: 'Admin was successfully Updated'
     else
       render 'admin_new'
     end
@@ -134,7 +139,7 @@ class ModeldetailsController < ApplicationController
   def admin_update
     @admin = Admin.find(params[:id])
     if @admin.update(admin_params)
-      redirect_to root_path
+      redirect_to  ad_admin_show_path(@admin), notice: 'Admin was successfully Updated'
     else
       render 'admin_edit'
     end
@@ -143,7 +148,7 @@ class ModeldetailsController < ApplicationController
   def admin_destroy
     @admin = Admin.find(params[:id])
     @admin.destroy 
-    redirect_to root_path, notice: 'Admin was successfully deleted.'    
+    redirect_to details_admins_path, notice: 'Admin was successfully deleted.'    
   end
 
   def admin_show
@@ -157,7 +162,7 @@ class ModeldetailsController < ApplicationController
   def user_create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: 'confirmation mail has been send to created user'
+      redirect_to ad_user_show_path(@user), notice: 'confirmation mail has been send to created user'
     else
       render 'user_new'
     end
@@ -170,7 +175,7 @@ class ModeldetailsController < ApplicationController
   def user_update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to ad_user_show_path(@user), notice: 'User was successfully Updated'
     else
       render 'user_edit'
     end
@@ -183,7 +188,7 @@ class ModeldetailsController < ApplicationController
   def user_destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to root_path, notice: 'User was successfully deleted.'
+    redirect_to users_admins_path, notice: 'User was successfully deleted.'
   end
 
   private 
