@@ -2,7 +2,7 @@ class ModeldetailsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_admin!
   def admins
-    @admins = Admin.order(sort_column + " " + sort_direction)
+    @admins = Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @admins.to_csv }
@@ -10,7 +10,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def users
-    @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ?","%#{params[:search]}%")
+    @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @users.to_csv }
@@ -18,7 +18,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def organisations
-    @organisations = Organisation.order(sort_column + " " + sort_direction)
+    @organisations = Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @organisations.to_csv }
@@ -26,7 +26,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def projects
-    @projects = Project.order(sort_column + " " + sort_direction)
+    @projects = Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @projects.to_csv }
@@ -76,7 +76,7 @@ class ModeldetailsController < ApplicationController
 
   
   def tasks
-    @tasks = Task.order(sort_column + " " + sort_direction)
+    @tasks = Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%")
     respond_to do |format|
       format.html 
       format.csv { send_data @tasks.to_csv }

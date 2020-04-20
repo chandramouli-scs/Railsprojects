@@ -4,7 +4,7 @@
 <div class="container ml-1">
 	<%= render 'notice' %>
 <h2 class="mx-5 mt-4 mb-4">Create admin</h2>
-
+<hr>
 <%= form_for @admin, url:{action:"admin_create"} do |f| %>
 	<% if @admin.errors.any? %>
 	    <div id="error_explanation">

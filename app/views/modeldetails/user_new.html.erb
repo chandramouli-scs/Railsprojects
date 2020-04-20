@@ -4,8 +4,8 @@
 
 <div class="container ml-1">
   <%= render 'notice' %>
-<h1>Create user</h1>
-
+<h1 class="mx-5 mt-4 mb-4">Create user</h1>
+<hr>
 <%= form_for @user, url:{action:"user_create"} do |f| %>
 	<% if @user.errors.any? %>
 	    <div id="error_explanation">

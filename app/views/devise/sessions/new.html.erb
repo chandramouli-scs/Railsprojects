@@ -1,3 +1,4 @@
+<div class="container">
 <h2 class="mx-5 mt-4 mb-4">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -28,3 +29,12 @@
 
 <span><strong>New user?</strong> Register Now </span>
 <%= render "devise/shared/links" %>
+</div>
+<style>
+  #link1 {
+    padding-top: 20px
+  }
+  #link2 {
+    padding-top: 20px
+  }
+</style>

@@ -5,7 +5,7 @@
 <div class="container ml-1">
 	<%= render 'notice' %>
 <h2 class="mx-5 mt-4 mb-4">Create Task</h2>
-
+<hr>
 <%= form_for @task, url:{action:"task_create"} do |f| %>
 	<% if @task.errors.any? %>
 	    <div id="error_explanation">

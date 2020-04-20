@@ -6,6 +6,7 @@
   <%= render 'notice' %>
 <h1 class="mx-5 mt-4 mb-4">Total no of Projects <%= Project.all.count %></h1>
 <div class="row">
+  <hr>
 	<% Project.all.each do |proj| %>
   <div class="col-sm-4 mb-3 ">
     <div class="card ">
