@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   def create
   	@project = current_user.projects.build(project_params)
   	if  @project.save
-  		redirect_to @project
+  		redirect_to project_path(@project), notice: 'Project was successfully created.'
   	else
   		render 'new'
       #redirect_to dashboard_home_path
@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   def update
     @project = current_user.projects.find(params[:id])
     if @project.update(project_params)
-      redirect_to root_path
+      redirect_to project_path(@project), notice: 'Project was successfully created.'
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   def destroy
      @project = current_user.projects.find(params[:id])
      @project.destroy 
-    redirect_to dashboard_projectsdash_path, notice: 'User was successfully deleted.'
+    redirect_to dashboard_projectsdash_path, notice: 'Project was successfully deleted.'
   end
 
   private 
