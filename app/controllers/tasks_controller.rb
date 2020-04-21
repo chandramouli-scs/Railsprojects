@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   def create 
   	@task = current_user.tasks.build(task_params)
   	if  @task.save
-  		redirect_to dashboard_home_path
+  		redirect_to @task, notice: 'Task was successfully created.'
   	else
   		render 'new'
   	end
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   def update
     @task = current_user.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to @task
+      redirect_to @task, notice: 'Task was successfully updated.'
     else
       render 'edit'
     end
@@ -34,11 +34,17 @@ class TasksController < ApplicationController
   def show
     @task = current_user.tasks.find(params[:id])
   end
+
+  def destroy
+    @task = current_user.tasks.find(params[:id])
+    @task.destroy
+    redirect_to dashboard_tasksdash_path, notice: 'Task was successfully deleted.'
+  end
   
   private
 
   def task_params
-  	params.require(:task).permit(:task_name, :project_id, :user_id, :attachment)
+  	params.require(:task).permit(:task_name, :project_id, :user_id, :photo)
   end
 
 end

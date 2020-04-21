@@ -206,7 +206,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :project_id, :user_id, :attachment)
+    params.require(:task).permit(:task_name, :project_id, :user_id, :photo)
   end
 
   def admin_params

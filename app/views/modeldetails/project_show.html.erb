@@ -19,7 +19,7 @@
     <tr>
       <td><%= tasks.id %></td>
       <td><%= tasks.task_name %></td>
-      <td><%= image_tag tasks.attachment.url(:thumb) %></td>
+      <td><%= image_tag(tasks.photo, style: "width:90px") %></td>
     </tr>
     <% end %>
   </tbody>

@@ -9,8 +9,11 @@
 	<h4 class="mb-5 mt-4 ml-3"><strong>Task name - </strong>
   	<%= @task.task_name %></h4>
 </div>
-<div>
+<!--<div>
 	<h4 class="mb-5 mt-4 ml-3"><strong>Task attachment - </strong> <%= image_tag @task.attachment.url(:thumb) %></h4>
+</div> -->
+<div>
+	<h4 class="mb-5 mt-4 ml-3"><strong>Task attachment - </strong> <%= image_tag(@task.photo, style: "width:20%") %></h4>
 </div>
 <div>
 	<h4><strong>This task is assigned to </strong> <%= @task.project.project_name.upcase %> Project</h4>

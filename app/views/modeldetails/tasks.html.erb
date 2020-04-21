@@ -29,7 +29,7 @@
 	    <tr>
 	 	  <td><%= task.id %></td>
 	 	  <td><%= task.task_name %></td>
-	    <td><%= image_tag task.attachment.url(:thumb) %></td>
+	    <td><%= image_tag(task.photo, style: "width:90px") %></td>
       <td>
           <%= link_to "Edit", ad_task_edit_path(task) %>
           <%= link_to "Delete", ad_task_show_path(task), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>

@@ -1,3 +1,4 @@
+<%= render partial: 'modeldetails/notice' %>
 <h1 class="mx-5 mt-4 mb-4">Total no of Tasks <%= current_user.tasks.count %></h1>
 
 <table class="table table-striped">
@@ -14,7 +15,8 @@
 	    <tr>
 	 	  <td><%= task.id %></td>
 	 	  <td><%= link_to task.task_name, task_path(task) %></td>
-	      <td><%= image_tag task.attachment.url(:thumb) %></td>
+	      <!-- <td><%= image_tag task.attachment.url(:thumb) %></td> -->
+        <td><%= image_tag(task.photo, style: "width:90px")%></td>
 	      <td>
 	      	<%= link_to "Edit", edit_task_path(task) %>
 	      	<%= link_to "Delete",  task_path(task), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-1" %>
