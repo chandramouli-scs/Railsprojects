@@ -1,21 +1,21 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-<div class="container ml-1">
-	<%= render 'notice' %>
-	
-	<h2 class="mx-5 mt-4 mb-4">Admin details</h2>
-	<hr>
-	<center>
-	<div>
-		<h5 class="mb-5 mt-4 ml-3"><strong class="title">Admin Email - </strong>
-  		<span class="data1"><%= @admin.email %></span></h5>
-	</div>	
-	</center>
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Admin details</h2>
+			<hr>
+			<center>
+			<div>
+				<h5 class="mb-5 mt-4 ml-3"><strong class="title">Admin Email - </strong>
+		  		<span class="data1"><%= @admin.email %></span></h5>
+			</div>	
+			</center>
+		</div>
+	</main>
+	</div>
 </div>
-</main>
-    </div>
-</div>
+
 <style >
 	.title {
 		color: #FA8072

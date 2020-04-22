@@ -1,29 +1,29 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-<div class="container ml-1">
-	<%= render 'notice' %>
-	
-	<h2 class="mx-5 mt-4 mb-4">Project details</h2>
-	<hr>
-	<center>
-	<div>
-		<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project name - </strong>
-  		<span class="data1"><%= @project.project_name %></span></h5>
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Project details</h2>
+			<hr>
+			<center>
+			<div>
+				<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project name - </strong>
+		  		<span class="data1"><%= @project.project_name %></span></h5>
+			</div>
+			<div>
+				<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project assigned to- </strong>
+		  		<span class="data1"><%= @project.user.user_name %></span></h5>
+			</div>
+			<div>
+				<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project Orgaisation name- </strong>
+		  		<span class="data1"><%= @project.organisation.organisation_name %></span></h5>
+			</div>	
+			</center>
+		</div>
+	</main>
 	</div>
-	<div>
-		<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project assigned to- </strong>
-  		<span class="data1"><%= @project.user.user_name %></span></h5>
-	</div>
-	<div>
-		<h5 class="mb-5 mt-4 ml-3"><strong class="title">Project Orgaisation name- </strong>
-  		<span class="data1"><%= @project.organisation.organisation_name %></span></h5>
-	</div>	
-	</center>
 </div>
-</main>
-    </div>
-</div>
+
 <style >
 	.title {
 		color: #FA8072

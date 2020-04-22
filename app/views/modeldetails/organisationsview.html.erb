@@ -1,30 +1,28 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-
-<div class="container ml-1">
-  <%= render 'notice' %>
-<h1 class="mx-5 mt-4 mb-4">Total no of Organisations <%= Organisation.all.count %></h1>
-<hr>
-
-<div class="row">
-	<% Organisation.all.each do |organisation| %>
-  <div class="col-sm-6 mb-3 ">
-    <div class="card ">
-    	<div class="card-header text-white text-center bg-info"><h4><%= organisation.organisation_name.upcase %></h4></div>
-      <div class="card-body text-center">
-      	<h5><strong>Projects (<%= organisation.projects.count %>):</strong></h5>
-        <% organisation.projects.all.each do |proj| %>
-        <p class="card-text"><%= proj.project_name %></p>
-        <% end %>
-        <%= link_to "view", organisation_path(organisation), class: "btn btn-dark" %>
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+    <div class="container ml-1">
+      <%= render 'notice' %>
+      <h1 class="mx-5 mt-4 mb-4">Total no of Organisations <%= Organisation.all.count %></h1>
+      <hr>
+      <div class="row">
+      	<% Organisation.all.each do |organisation| %>
+        <div class="col-sm-6 mb-3 ">
+          <div class="card ">
+          	<div class="card-header text-white text-center bg-info"><h4><%= organisation.organisation_name.upcase %></h4></div>
+              <div class="card-body text-center">
+              	<h5><strong>Projects (<%= organisation.projects.count %>):</strong></h5>
+                <% organisation.projects.all.each do |proj| %>
+                <p class="card-text"><%= proj.project_name %></p>
+                <% end %>
+                <%= link_to "view", organisation_path(organisation), class: "btn btn-dark" %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
       </div>
-    </div>
+  </main>
   </div>
-  <% end %>
-</div>
-</div>
-</main>
-    </div>
 </div>
 

@@ -1,39 +1,39 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-          <%= render partial: 'modeldetails/notice' %>
-<div class="container ml-1">
-<h1 class="pl-5 pt-4 pb-4">Users of <%= @organisation.organisation_name %> 
-  ( <%= @organisation.users.count %> )</h1>
-  <hr>
-<h3></h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">User Name</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone Number</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<% @organisation.users.each do |user| %>
-	    <tr>
-	      <td><%= user.id %></td>
-	      <td><strong><%= user.user_name.upcase %></strong></span></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone_number %></td>
-	    </tr>
-	<% end %>
-  </tbody>
-</table>
-</div>
-</main>
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+    <%= render partial: 'modeldetails/notice' %>
+    <div class="container ml-1">
+      <h1 class="pl-5 pt-4 pb-4">Users of <%= @organisation.organisation_name %> 
+        ( <%= @organisation.users.count %> )</h1>
+        <hr>
+      <h3></h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">User Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+        	<% @organisation.users.each do |user| %>
+      	    <tr>
+      	      <td><%= user.id %></td>
+      	      <td><strong><%= user.user_name.upcase %></strong></span></td>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.phone_number %></td>
+      	    </tr>
+      	<% end %>
+        </tbody>
+      </table>
     </div>
+  </main>
+  </div>
 </div>
 
 

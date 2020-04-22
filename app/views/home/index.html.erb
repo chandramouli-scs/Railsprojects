@@ -1,48 +1,48 @@
 <%= render partial: 'modeldetails/notice' %>
 <div class="container">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
+      </div>
     </div>
-    <div class="carousel-item">
-      <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag 'homeimages/3.jpg', class: "d-block w-100" %>
-    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
-<div>
-	<br>
-	<h4>Want your organisation and Users Keep tracked? Use our Project Managment System</h4>
-	<br>
-</div>
-<hr>
-<div class="text-center">
-	<h4 class="text-secondary">New to this PMS Don't worry</h4>
-	<br>
-	<h5><span class="text-info">Register here for user</span> - <%= link_to "Sign-up User", new_user_registration_path, class: "btn btn-warning" %> </h5>
-	<br>
-</div>
-<hr>
-<div class="text-center">
-	<h4 class="text-secondary">Already an User of this PMS?</h4>
-	<br>
-	<h5><span class="text-info">Log-in here for user</span> - <%= link_to "Log-in User", new_user_session_path, class: "btn btn-success" %></h5>
-</div>
+  <div>
+  	<br>
+  	<h4>Want your organisation and Users Keep tracked? Use our Project Managment System</h4>
+  	<br>
+  </div>
+  <hr>
+  <div class="text-center">
+  	<h4 class="text-secondary">New to this PMS Don't worry</h4>
+  	<br>
+  	<h5><span class="text-info">Register here for user</span> - <%= link_to "Sign-up User", new_user_registration_path, class: "btn btn-warning" %> </h5>
+  	<br>
+  </div>
+  <hr>
+  <div class="text-center">
+  	<h4 class="text-secondary">Already an User of this PMS?</h4>
+  	<br>
+  	<h5><span class="text-info">Log-in here for user</span> - <%= link_to "Log-in User", new_user_session_path, class: "btn btn-success" %></h5>
+  </div>
 </div>

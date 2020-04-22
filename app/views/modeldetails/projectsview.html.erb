@@ -1,28 +1,27 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-
-<div class="container ml-1">
-  <%= render 'notice' %>
-<h1 class="mx-5 mt-4 mb-4">Total no of Projects <%= Project.all.count %></h1>
-<div class="row">
-  <hr>
-	<% Project.all.each do |proj| %>
-  <div class="col-sm-4 mb-3 ">
-    <div class="card ">
-    	<div class="card-header text-white text-center bg-info"><h4><%= proj.project_name.upcase %></h4></div>
-      <div class="card-body text-center">
-      	<h5 class="text-success"><strong>Tasks (<%= proj.tasks.count %>) :</strong></h5>
-        <% proj.tasks.all.each do |task| %>
-        <p class="card-text"><%= task.task_name %></p>
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+    <div class="container ml-1">
+      <%= render 'notice' %>
+      <h1 class="mx-5 mt-4 mb-4">Total no of Projects <%= Project.all.count %></h1>
+      <div class="row">
+        <hr>
+      	<% Project.all.each do |proj| %>
+        <div class="col-sm-4 mb-3 ">
+          <div class="card ">
+          	<div class="card-header text-white text-center bg-info"><h4><%= proj.project_name.upcase %></h4></div>
+              <div class="card-body text-center">
+              	<h5 class="text-success"><strong>Tasks (<%= proj.tasks.count %>) :</strong></h5>
+                <% proj.tasks.all.each do |task| %>
+                <p class="card-text"><%= task.task_name %></p>
+                <% end %>
+                <%= link_to "view", projectshow_admins_path(proj), class: "btn btn-dark" %>
+              </div>
+            </div>
+          </div>
         <% end %>
-        <%= link_to "view", projectshow_admins_path(proj), class: "btn btn-dark" %>
       </div>
     </div>
+  </main>
   </div>
-  <% end %>
-</div>
-</div>
-</main>
-    </div>
 </div>

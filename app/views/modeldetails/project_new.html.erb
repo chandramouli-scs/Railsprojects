@@ -1,44 +1,42 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-
-<div class="container ml-1">
-	<%= render 'notice' %>
-<h2 class="mx-5 mt-4 mb-4">Creating Project </h2>
-<hr>
-
-<%= form_for @project, url:{action:"project_create"} do |f| %>
-	<% if @project.errors.any? %>
-	    <div id="error_explanation">
-	      <ul>
-	        <% @project.errors.full_messages.each do |message| %>
-	          <li class="text-danger"><%= message %></li>
-	        <% end %>
-	      </ul>
-	    </div>
-	<% end %>
-	<div>
-		<%= f.label :User %>
-    	<%= f.select :user_id, User.all.map  { |m1| [m1.user_name, m1.id]}, class: 'form-control status' %> 
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Creating Project </h2>
+			<hr>
+			<%= form_for @project, url:{action:"project_create"} do |f| %>
+				<% if @project.errors.any? %>
+				    <div id="error_explanation">
+				      <ul>
+				        <% @project.errors.full_messages.each do |message| %>
+				          <li class="text-danger"><%= message %></li>
+				        <% end %>
+				      </ul>
+				    </div>
+				<% end %>
+				<div>
+					<%= f.label :User %>
+			    	<%= f.select :user_id, User.all.map  { |m1| [m1.user_name, m1.id]}, class: 'form-control status' %> 
+				</div>
+				<div>
+					<br>
+					<%= f.label :project_name %>
+				    <%= f.text_field :project_name, class: "form-control" %>
+			    </div>
+			    <div>
+			    	<br>
+			    	<%= f.label :Organisation %>
+			    	<%= f.select :organisation_id, Organisation.all.map  { |m1| [m1.organisation_name, m1.id]}, class: 'form-control status' %> 
+			    </div>
+			    <div class="actions">
+				    <br>
+				    <%= f.submit "Create project", class: "btn btn-success btn-block" %>
+			  	</div>
+			<% end %>
+		</div>
+	</main>
 	</div>
-	<div>
-		<br>
-		<%= f.label :project_name %>
-	    <%= f.text_field :project_name, class: "form-control" %>
-    </div>
-    <div>
-    	<br>
-    	<%= f.label :Organisation %>
-    	<%= f.select :organisation_id, Organisation.all.map  { |m1| [m1.organisation_name, m1.id]}, class: 'form-control status' %> 
-    </div>
-    <div class="actions">
-	    <br>
-	    <%= f.submit "Create project", class: "btn btn-success btn-block" %>
-  	</div>
-<% end %>
-</div>
-</main>
-    </div>
 </div>
 
 

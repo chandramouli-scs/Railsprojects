@@ -1,43 +1,43 @@
 <div class="container-fluid">
-        <%= render partial: 'modeldetails/sidebar' %>
-        <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
-<div class="container ml-1">
-	<%= render 'notice' %>
-<h2 class="mx-5 mt-4 mb-4">Create admin</h2>
-<hr>
-<%= form_for @admin, url:{action:"admin_create"} do |f| %>
-	<% if @admin.errors.any? %>
-	    <div id="error_explanation">
-	      <ul>
-	        <% @admin.errors.full_messages.each do |message| %>
-	          <li class="text-danger"><%= message %></li>
-	        <% end %>
-	      </ul>
-	    </div>
-	<% end %>
-	<div>
-	    <%= f.label :email %><br />
-	    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-	</div>	
-	<div>
-	    <br>
-	    <%= f.label :password %>
-	    <% if @minimum_password_length %>
-	    <em>(<%= @minimum_password_length %> characters minimum)</em>
-	    <% end %><br />
-	    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-	</div>	
-	<div>
-		<%= f.label :password_confirmation %><br />
-    	<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Create admin</h2>
+			<hr>
+			<%= form_for @admin, url:{action:"admin_create"} do |f| %>
+				<% if @admin.errors.any? %>
+				    <div id="error_explanation">
+				      <ul>
+				        <% @admin.errors.full_messages.each do |message| %>
+				          <li class="text-danger"><%= message %></li>
+				        <% end %>
+				      </ul>
+				    </div>
+				<% end %>
+					<div>
+					    <%= f.label :email %><br />
+					    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+					</div>	
+					<div>
+					    <br>
+					    <%= f.label :password %>
+					    <% if @minimum_password_length %>
+					    <em>(<%= @minimum_password_length %> characters minimum)</em>
+					    <% end %><br />
+					    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+					</div>	
+					<div>
+						<%= f.label :password_confirmation %><br />
+				    	<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+					</div>
+				  	<br>
+				    <div class="actions">
+					    <br>
+					    <%= f.submit "Create admin", class: "btn btn-success btn-block" %>
+				  	</div>
+			<% end %>
+		</div>
+	</main>
 	</div>
-  	<br>
-    <div class="actions">
-	    <br>
-	    <%= f.submit "Create admin", class: "btn btn-success btn-block" %>
-  	</div>
-<% end %>
-</div>
-</main>
-    </div>
 </div>
