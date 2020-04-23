@@ -1,6 +1,6 @@
 <div class="container">
-<h1 class="mx-5 mt-4 mb-4">Log in</h1>
-
+  <div class="container mt-3"><center><span id="text1"><%= alert %></span></center></div>
+<h2 class="mx-5 mt-4 mb-4"><span class="text-secondary">Admin</span> Log in</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -26,5 +26,11 @@
   <br>
 <% end %>
 
-<%= render "admins/shared/links" %>
 </div>
+
+<style>
+    #text1 {
+    color: red;
+    font-size: 20px;
+  }
+</style>

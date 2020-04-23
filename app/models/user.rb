@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable,
-         :timeoutable, :trackable
+         :timeoutable, :trackable, :omniauthable, omniauth_providers: %i[facebook]
 
   def self.to_csv
     attributes = %w{id email first_name last_name phone_number user_name}

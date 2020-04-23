@@ -47,9 +47,15 @@ Rails.application.routes.draw do
   get 'modeldetails/organisation_details/:id', to: 'organisations#organisation_details', as: 'organisationdetails_admins'
 
   # devise admins     
-  devise_for :admins, path: 'admins', controllers: {
+  devise_for :admins, skip: [:registrations], path: 'admins', controllers: {
         sessions: 'admins/sessions', registrations: 'admins/registrations', passwords: 'admins/passwords'
       }
+  as :admin do 
+    get 'admins/edit' => 'admins/registrations#edit', :as => 'edit_admin_registration'
+  put '/admins(.:format)' => 'admins/registrations#update', as: 'admin_registration'
+  patch '/admins(.:format)' => 'admins/registrations#update'
+  end
+      
   root 'home#index'
   get 'home/dashboard', to: 'home#dashboard', as: 'dashboard_home'
   get 'admin/dashboard', to: 'home#admindashboard', as: 'admindashboard_home'

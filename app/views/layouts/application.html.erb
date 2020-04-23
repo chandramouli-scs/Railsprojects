@@ -47,7 +47,7 @@
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <strong><%= current_user.user_name.upcase %></strong>
                   </button>
-                  <div class="dropdown-menu dropdown-menu-right">
+                  <div class="dropdown-menu dropdown-menu-left">
                     <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_user_registration_path, class: "btn" %></button>
                     <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></button>
                   </div>
@@ -57,7 +57,7 @@
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <strong><%= current_admin.email %></strong>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-left">
                   <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_admin_registration_path, class: "btn" %></button>
                   <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %></button>
                 </div>
@@ -67,7 +67,7 @@
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <strong>Log-in</strong>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-left">
                   <button class="dropdown-item" type="button"><%= link_to "User", new_user_session_path, class: "btn " %></button>
                   <button class="dropdown-item " type="button"><%= link_to "Admin", new_admin_session_path, class: "btn" %></button>
                 </div>
@@ -81,7 +81,6 @@
         </div>
         </nav>
       </header>
-      <%= alert %>
       <div ><%= yield %></div>
       <% if current_admin %>
       <div>
