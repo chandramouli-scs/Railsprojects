@@ -87,7 +87,6 @@ Rails.application.routes.draw do
   patch 'organisations/update/:id', to: 'organisations#update' 
   delete 'organisations/:id', to: 'organisations#destroy' 
 
-  devise_for :users, path: 'users', :controllers => { registrations: 'registrations',
-  :omniauth_callbacks => "users/omniauth_callbacks"   }
+  devise_for :users, path: 'users', :controllers => { registrations: 'registrations' }
   
 end
