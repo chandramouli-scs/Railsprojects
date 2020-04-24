@@ -14,6 +14,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :lockable,
          :timeoutable, :trackable, :omniauthable, omniauth_providers: %i[facebook]
 
+         devise :omniauthable, :omniauth_providers => [:facebook]
+
   def self.to_csv
     attributes = %w{id email first_name last_name phone_number user_name}
 		CSV.generate do |csv|
@@ -24,4 +26,12 @@ class User < ApplicationRecord
   	end
   end
   
+  def self.from_omniauth(auth)
+  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.user_name = auth.info.name   # assuming the user model has a name
+  end
+end
+
 end
