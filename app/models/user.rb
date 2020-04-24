@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :newsfeeds
 	has_many :projects, dependent: :destroy
 	has_many :tasks
 	belongs_to :organisation 

@@ -1,0 +1,27 @@
+<div class="container">
+<%= form_for @newsfeed, url:{action:"update"} do |f| %>
+				<% if @newsfeed.errors.any? %>
+				    <div id="error_explanation">
+				      <ul>
+				        <% @newsfeed.errors.full_messages.each do |message| %>
+				          <li class="text-danger"><%= message %></li>
+				        <% end %>
+				      </ul>
+				    </div>
+				<% end %>
+					<div>
+					    <%= f.label :post %><br />
+					    <%= f.text_field :post, class: "form-control" %>
+					</div>	
+	
+					<div>
+						<%= f.label :User_id %><br />
+					    <%= f.text_field :user_id, class: "form-control" %>
+					</div>
+				  	<br>
+				    <div class="actions">
+					    <br>
+					    <%= f.submit "Create newsfeed", class: "btn btn-success btn-block" %>
+				  	</div>
+			<% end %>
+</div>			

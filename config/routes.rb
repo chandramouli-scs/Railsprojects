@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  #users - newsfeed
+  get 'newsfeeds', to: 'newsfeeds#index', as: 'newsfeeds'
+  get 'newsfeeds/show/:id', to: 'newsfeeds#show', as: 'newsfeed'  
+  get 'newsfeed/new', to: 'newsfeeds#new', as: 'new_newsfeed'
+  post 'create/newsfeeds', to: 'newsfeeds#create'
+  get 'newsfeeds/edit/:id', to: 'newsfeeds#edit', as: 'edit_newsfeed'
+  patch 'newsfeeds/update/:id', to: 'newsfeeds#update' 
+  delete 'newsfeeds/show/:id', to: 'newsfeeds#destroy'
+
+  #admin - modeldetails
   get 'modeldetails/admins', as: 'details_admins'
   get 'admins/organisationsspec', to: 'modeldetails#organisationsview', as: 'organisationspec'
   get 'admins/projectsspec', to: 'modeldetails#projectsview', as: 'projectsspec'

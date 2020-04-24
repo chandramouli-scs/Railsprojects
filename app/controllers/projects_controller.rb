@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   def update
     @project = current_user.projects.find(params[:id])
     if @project.update(project_params)
-      redirect_to project_path(@project), notice: 'Project was successfully created.'
+      redirect_to project_path(@project), notice: 'Project was successfully updated.'
     else
       render 'edit'
     end
