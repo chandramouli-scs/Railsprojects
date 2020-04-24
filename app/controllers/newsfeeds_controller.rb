@@ -10,12 +10,12 @@ class NewsfeedsController < ApplicationController
   end
 
   def edit
-  	@newsfeed = Newsfeed.find(params[:id])
+  	@newsfeed = current_user.newsfeeds.find(params[:id])
   	@user = current_user
   end
 
   def update
-  	@newsfeed = Newsfeeds.find(params[:id])
+  	@newsfeed = current_user.newsfeeds.find(params[:id])
   	@user = current_user
     if @newsfeed.update(news_feed_params)
       redirect_to newsfeeds_path

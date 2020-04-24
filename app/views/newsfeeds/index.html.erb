@@ -9,7 +9,9 @@
 		<center>
 		<h5>News - <%= news.post %><br>
 		Posted by - <%= news.user.user_name %></h5>
+		<% if can? :edit, news %>
 		<%= link_to "Edit", edit_newsfeed_path(news) %> <%= link_to "Delete", newsfeed_path(news), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger" %></center><br>
+		<% end %>
 
 	</div>
 
