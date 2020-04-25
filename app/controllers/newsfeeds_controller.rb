@@ -2,21 +2,24 @@ class NewsfeedsController < ApplicationController
   	before_action :authenticate_user!
 
   def index
-  	@newsfeeds = Newsfeed.all
+  	@newsfeeds = Newsfeed.all.order(created_at: :desc)
   end
 
   def show
   	@newsfeed = Newsfeed.find(params[:id])
+  	authorize! :show, @newsfeed
   end
 
   def edit
-  	@newsfeed = current_user.newsfeeds.find(params[:id])
+  	@newsfeed = Newsfeed.find(params[:id])
   	@user = current_user
+  	authorize! :edit, @newsfeed
   end
 
   def update
-  	@newsfeed = current_user.newsfeeds.find(params[:id])
+  	@newsfeed = Newsfeed.find(params[:id])
   	@user = current_user
+  	authorize! :update, @newsfeed
     if @newsfeed.update(news_feed_params)
       redirect_to newsfeeds_path
     else
@@ -41,6 +44,7 @@ class NewsfeedsController < ApplicationController
 
   def destroy
   	@newsfeed = Newsfeed.find(params[:id])
+  	authorize! :destroy, @newsfeed
      @newsfeed.destroy 
     redirect_to newsfeeds_path, notice: 'Newsfeed was successfully deleted.'
   end
