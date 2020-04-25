@@ -21,6 +21,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'cancancan'
+gem 'devise-authy'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

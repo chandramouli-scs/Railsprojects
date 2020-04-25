@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :phone_number,  presence: true
   # Include default devise modules. Others available are:
   # :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :authy_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable,
          :timeoutable, :trackable
 

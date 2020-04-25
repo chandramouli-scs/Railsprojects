@@ -7,6 +7,9 @@
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%=javascript_include_tag "https://www.authy.com/form.authy.min.js" %>
+  <%=stylesheet_link_tag "https://www.authy.com/form.authy.min.css" %>
+
     </head>
 
     <body >
@@ -52,7 +55,10 @@
                   </button>
                   <div class="dropdown-menu dropdown-menu-left">
                     <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_user_registration_path, class: "btn" %></button>
-                    <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %></button>
+                    <% if !current_user.authy_id? %>
+                    <button class="dropdown-item " type="button"><%= link_to "Two factor Authentication", user_enable_authy_path, class: "btn" %></button>
+                    <% end %>
+                    <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_user_session_path, method: :get, class: "dropdown-item" %></button>
                   </div>
                 </div>
               <% elsif current_admin %>
