@@ -21,7 +21,7 @@ class NewsfeedsController < ApplicationController
   	@user = current_user
   	authorize! :update, @newsfeed
     if @newsfeed.update(news_feed_params)
-      redirect_to newsfeeds_path
+      redirect_to newsfeeds_path, notice: 'News was successfully Updated.'
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class NewsfeedsController < ApplicationController
   def create
   	@newsfeed = current_user.newsfeeds.build(news_feed_params)
   	if @newsfeed.save
-  		redirect_to newsfeeds_path
+  		redirect_to newsfeeds_path, notice: 'News was successfully Created.'
   	else
   		render 'new'
   	end
