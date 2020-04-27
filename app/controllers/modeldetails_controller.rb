@@ -3,33 +3,70 @@ class ModeldetailsController < ApplicationController
   before_action :authenticate_admin!
   def admins
     @admins = Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%")
+    admins = Admin.where(id: params[:admin_id])
     respond_to do |format|
       format.html 
-      format.csv { send_data @admins.to_csv }
+      attributes = %w{id email created_at}
+      admin_csv =  CSV.generate do |csv|
+          csv << attributes
+          admins.each do |admin|
+            csv << admin.attributes.values_at(*attributes)
+          end
+      end
+      format.csv { send_data admin_csv }
     end
   end
 
   def users
     @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    users = User.where(id: params[:user_id])
     respond_to do |format|
       format.html 
-      format.csv { send_data @users.to_csv }
+      attributes = %w{id email first_name last_name phone_number user_name}
+      user_csv =  CSV.generate do |csv|
+          csv << attributes
+          users.each do |user|
+            csv << user.attributes.values_at(*attributes)
+          end
+      end
+      format.csv { send_data user_csv }
     end
+  end
+
+  def newshift
+    shift_key = params[:user_id]
+    redirect_to users_admins_path
   end
 
   def organisations
     @organisations = Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%")
+    organisations = Organisation.where(id: params[:organisation_id])
     respond_to do |format|
       format.html 
-      format.csv { send_data @organisations.to_csv }
+      attributes = %w{id organisation_name created_at}
+      org_csv =  CSV.generate do |csv|
+          csv << attributes
+          organisations.each do |org|
+            csv << org.attributes.values_at(*attributes)
+          end
+      end
+      format.csv { send_data org_csv }
     end
   end
 
   def projects
     @projects = Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%")
+    projects = Project.where(id: params[:project_id])
     respond_to do |format|
       format.html 
-      format.csv { send_data @projects.to_csv }
+      attributes = %w{id project_name created_at}
+      project_csv = CSV.generate do |csv|
+        csv << attributes
+        projects.each do |project|
+          csv << project.attributes.values_at(*attributes)
+        end
+      end
+      format.csv { send_data project_csv }
     end
     
   end
@@ -77,9 +114,17 @@ class ModeldetailsController < ApplicationController
   
   def tasks
     @tasks = Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%")
+    tasks = Task.where(id: params[:task_id])
     respond_to do |format|
       format.html 
-      format.csv { send_data @tasks.to_csv }
+      attributes = %w{id task_name}
+      task_csv =  CSV.generate do |csv|
+          csv << attributes
+          tasks.each do |task|
+            csv << task.attributes.values_at(*attributes)
+          end
+      end
+      format.csv { send_data task_csv }
     end
   end
 

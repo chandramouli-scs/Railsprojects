@@ -14,9 +14,11 @@
         <% end %>
       </div>
     </div>
+    <%= form_tag projects_admins_path(format: "csv"), :method => :get do %>
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
+          <th>check</th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "project_name" %></th>
           <th scope="col"><%= sortable "created_at" %></th>
@@ -26,6 +28,7 @@
       <tbody>
       	<% @projects.each do |project| %>
     	    <tr>
+          <td><%= check_box_tag "project_id[]", project.id %></td>
     	 	  <td><%= project.id %></td>
     	 	  <td><%= link_to project.project_name, projectshow_admins_path(project), class: "text-success" %></td>
     	      <td><%= project.created_at %></td>
@@ -37,7 +40,8 @@
     	 <% end %>
        </tbody>
     </table>
-    <span><%= link_to "Export to CSV", projects_admins_path(format: "csv"), class: 'btn btn-primary ml-5 mt-4' %></span>
+    <%= submit_tag "Export to CSV", class: "btn btn-primary ml-5" %>
+    <% end %>
   </main>
   </div>
 </div>

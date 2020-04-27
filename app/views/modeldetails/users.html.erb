@@ -17,9 +17,11 @@
 
 
 
+    <%= form_tag users_admins_path(format: "csv"), :method => :get do %>
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
+          <th>check</th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "user_name" %></th>
           <th scope="col"><%= sortable "first_name" %></th>
@@ -32,7 +34,8 @@
       <tbody>
       	<% @users.each do |user| %>
     	    <tr>
-    	 	  <td><%= user.id %></td>
+            <td><%= check_box_tag 'user_id[]', user.id %></td>
+    	 	    <td><%= user.id %></td>
     	      <td><%= user.user_name %></td>
     	      <td><%= user.first_name %></td>
     	      <td><%= user.last_name %></td>
@@ -43,10 +46,12 @@
               <%= link_to "Delete", ad_user_show_path(user), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
             </td>        
     	    </tr>
-    	 <% end %>
+          <% end %>
        </tbody>
     </table>
-    <span><%= link_to "Export to CSV", users_admins_path(format: "csv"), class: 'btn btn-primary ml-5 mt-4' %></span>
+       <%= submit_tag "Export to CSV", class: 'btn btn-primary ml-5 mt-4' %>
+       <% end %>
+    <span></span>
   </main>
   </div>
 </div>

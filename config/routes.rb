@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'modeldetails/user_edit/:id', to: 'modeldetails#user_edit', as: 'ad_user_edit'
   patch 'update/user/:id', to: 'modeldetails#user_update' 
   delete 'modeldetails/user_show/:id', to: 'modeldetails#user_destroy'
+  put 'modeldetails/newshift',to: 'modeldetails#newshift'
 
   #admin - organisation
   get 'modeldetails/organisation_details/:id', to: 'organisations#organisation_details', as: 'organisationdetails_admins'
