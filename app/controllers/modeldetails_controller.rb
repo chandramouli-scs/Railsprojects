@@ -19,17 +19,18 @@ class ModeldetailsController < ApplicationController
 
   def users
     @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
-    users = User.where(id: params[:user_id])
+    @users1 = User.where(id: params[:user_id])
     respond_to do |format|
       format.html 
       attributes = %w{id email first_name last_name phone_number user_name}
       user_csv =  CSV.generate do |csv|
           csv << attributes
-          users.each do |user|
+          @users1.each do |user|
             csv << user.attributes.values_at(*attributes)
           end
       end
       format.csv { send_data user_csv }
+      format.pdf {render template: 'modeldetails/users1', pdf: 'users1'}
     end
   end
 

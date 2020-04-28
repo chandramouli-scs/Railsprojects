@@ -19,7 +19,7 @@
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th>check</th>
+          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "organisation_name" %></th>
           <th scope="col"><%= sortable "created_at" %></th>
@@ -29,7 +29,7 @@
       <tbody>
       	<% @organisations.each do |organisation| %>
     	    <tr>
-          <td><%= check_box_tag "organisation_id[]", organisation.id %></td>
+          <td><%= check_box_tag "organisation_id[]", organisation.id, false, class: "childcheck1" %></td>
     	 	  <td><%= organisation.id %></td>
     	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
     	      <td><%= organisation.created_at %></td>

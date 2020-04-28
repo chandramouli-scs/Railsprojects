@@ -128,5 +128,24 @@
   }
 </style>
 
+<script >
+$('#parentcheck1').change(function() {
+  var is_checked = this.checked;
+  $('.childcheck1').each(function() {
+    this.checked = is_checked;
+  });
+
+  $('.childcheck1').change(function(){
+      if($(this).prop("checked") == false){
+        $('#parentcheck1').prop("checked", false)
+      }
+      if($('.childcheck1:checked').length == $(".childcheck1").length){
+          $("#parentcheck1").prop("checked", true)
+      }
+  });
+
+});
+</script>
+
 
 

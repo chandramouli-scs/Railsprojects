@@ -18,7 +18,7 @@
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th>check</th>
+          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "project_name" %></th>
           <th scope="col"><%= sortable "created_at" %></th>
@@ -28,7 +28,7 @@
       <tbody>
       	<% @projects.each do |project| %>
     	    <tr>
-          <td><%= check_box_tag "project_id[]", project.id %></td>
+          <td><%= check_box_tag "project_id[]", project.id, false, class: "childcheck1" %></td>
     	 	  <td><%= project.id %></td>
     	 	  <td><%= link_to project.project_name, projectshow_admins_path(project), class: "text-success" %></td>
     	      <td><%= project.created_at %></td>

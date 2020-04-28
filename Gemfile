@@ -22,6 +22,8 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'cancancan'
 gem 'devise-authy'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
