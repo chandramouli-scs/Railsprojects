@@ -6,25 +6,19 @@
 </head>
 <body>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<h1 class="ml-5">User Details</h1>
+	<h1 class="ml-5">Task Details</h1>
 <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th scope="col">User name</th>
-          <th scope="col">First name</th>
-          <th scope="col">Last name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone_number</th>
+          <th scope="col">Task Name</th>
+          <th scope="col">Created At</th>
         </tr>
       </thead>
       <tbody>
-      	<% @users1.each do |user| %>
+      	<% @tasks1.each do |task| %>
     	    <tr>
-    	      <td><%= user.user_name %></td>
-    	      <td><%= user.first_name %></td>
-    	      <td><%= user.last_name %></td>
-    	      <td><%= user.email %></td>
-    	      <td><%= user.phone_number %></td>       
+    	      <td><%= task.task_name %></td>
+    	      <td><%= task.created_at %></td>       
     	    </tr>
           <% end %>
        </tbody>

@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     get 'admins/edit' => 'admins/registrations#edit', :as => 'edit_admin_registration'
   put '/admins(.:format)' => 'admins/registrations#update', as: 'admin_registration'
   patch '/admins(.:format)' => 'admins/registrations#update'
+  delete 'admins/sign_out' => 'admins/sessions#destroy'
   end
       
   root 'home#index'

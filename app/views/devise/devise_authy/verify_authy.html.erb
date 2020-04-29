@@ -1,10 +1,12 @@
+<div class="container text-center">
 <h2>
   <%= I18n.t('submit_token_title', {:scope => 'devise'}) %>
 </h2>
 
 <%= verify_authy_form do %>
-  <legend><%= I18n.t('submit_token_title', {:scope => 'devise'}) %></legend>
-  <%= label_tag 'authy-token' %>
+  <div class="ml-1 mt-3"><br>To recieve Auty-token please click on Request SMS :
+    <%= authy_request_sms_link %><br><br><br></div>
+  <strong><%= label_tag 'authy-token' %></strong>
   <%= text_field_tag :token, "", :autocomplete => :off, :id => 'authy-token' %>
   <label>
     <%= check_box_tag :remember_device %>
@@ -16,8 +18,7 @@
   <!-- See documentation: https://github.com/authy/authy-form-helpers#help-tooltip -->
   <!-- <%= link_to '?', '#', :id => 'authy-help' %> -->
 
-  <%= authy_request_sms_link %>
-  <%= submit_tag I18n.t('submit_token', {:scope => 'devise'}), :class => 'btn' %>
+  <%= submit_tag I18n.t('submit_token', {:scope => 'devise'}), :class => 'btn btn-success' %>
 <% end %>
 
 <% if @onetouch_uuid %>
@@ -35,3 +36,4 @@
       })();
     </script>
 <% end %>
+</div>
