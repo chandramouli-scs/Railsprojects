@@ -5,7 +5,9 @@
     <h2><p class="mx-5 mt-4 mb-4">Admins - <%= Admin.all.count %></p></h2>
     <div class="row container-fluid">
       <div class="col-12 col-lg-6">
+        <% if can? :admin_new, @admins %>
         <h4><%= link_to "+ Create new Admin",  ad_admin_new_path, class: "btn btn-warning ml-5" %></h4>
+        <% end %>
       </div>
       <div class="col-12 col-lg-5 ml-3 mb-3">
         <%= form_tag details_admins_path, :method => 'get' do %>
@@ -34,8 +36,12 @@
     	 	  <td><%= admin.email %></td>
     	      <td><%= admin.created_at %></td>
           <td>
+            <% if can? :admin_edit, admin%>
               <%= link_to "Edit", ad_admin_edit_path(admin) %>
+              <% end %>
+            <% if can? :admin_destroy, admin%>
               <%= link_to "Delete", ad_admin_show_path(admin), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
+              <% end %>
           </td>        
     	    </tr>
     	 <% end %>

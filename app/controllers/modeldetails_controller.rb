@@ -80,6 +80,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def project_new
+    authorize! :project_new, @project
     @project = Project.new
   end
 
@@ -106,6 +107,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def project_destroy
+    authorize! :project_destroy, @project
     @project = Project.find(params[:id])
     @project.destroy 
     redirect_to projects_admins_path, notice: 'Project was successfully deleted.'
@@ -134,6 +136,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def task_new
+    authorize! :task_new, @task
     @task = Task.new
   end
 
@@ -164,12 +167,14 @@ class ModeldetailsController < ApplicationController
   end
 
   def task_destroy
+    authorize! :task_destroy, @task
     @task = Task.find(params[:id])
     @task.destroy 
     redirect_to tasks_admins_path, notice: 'Task was successfully deleted.'
   end
 
   def admin_new
+    authorize! :admin_new, @admin
     @admin = Admin.new
   end
 
@@ -196,6 +201,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def admin_destroy
+    authorize! :admin_destroy, @admin
     @admin = Admin.find(params[:id])
     @admin.destroy 
     redirect_to details_admins_path, notice: 'Admin was successfully deleted.'    
@@ -206,6 +212,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def user_new
+    authorize! :user_new, @user
     @user = User.new
   end
 
@@ -236,6 +243,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def user_destroy
+    authorize! :user_destroy, @user
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_admins_path, notice: 'User was successfully deleted.'

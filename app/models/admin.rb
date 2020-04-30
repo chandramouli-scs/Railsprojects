@@ -5,4 +5,13 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable 
   validates :email, :uniqueness => {:case_sensitive => false}
 
+
+  def super_admin?
+  	super_admin
+  end
+
+  def admin?
+  	admin
+  end
+
 end

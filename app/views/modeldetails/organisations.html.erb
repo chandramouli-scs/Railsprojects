@@ -5,7 +5,9 @@
     <h2><p class="mx-5 mt-4 mb-4">Organisations - <%= Organisation.all.count %></p></h2>
     <div class="row container-fluid">
       <div class="col-12 col-lg-6">
+        <% if can? :new, @organisations %>
         <h4><%= link_to "+ Create new Organisation",  new_organisation_path, class: "btn btn-warning ml-5" %></h4>
+        <% end %>
       </div>
       <div class="col-12 col-lg-5 ml-3 mb-3">
         <%= form_tag organisations_admins_path, :method => 'get' do %>
@@ -34,8 +36,12 @@
     	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
     	      <td><%= organisation.created_at %></td>
     	      <td>
-    	      	<span class="glyphicon glyphicon-edit"></span> <%= link_to "Edit", edit_organisation_path(organisation) %>
+            <% if can? :edit, organisation%>
+    	      	<%= link_to "Edit", edit_organisation_path(organisation) %>
+              <% end %>
+            <% if can? :destroy, organisation%>
     	      	<%= link_to "Delete",  organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-2" %>
+              <% end %>
     	      </td>
     	    </tr>
     	 <% end %>

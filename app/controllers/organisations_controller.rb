@@ -8,6 +8,7 @@ class OrganisationsController < ApplicationController
   end
 
   def new
+    authorize! :new, @organisation
   	@organisation = Organisation.new
   end
 
@@ -30,6 +31,7 @@ class OrganisationsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @organisation
     @organisation = Organisation.find(params[:id])
     @organisation.destroy 
     redirect_to organisations_admins_path, notice: 'Organisation was successfully Deleted.' 
