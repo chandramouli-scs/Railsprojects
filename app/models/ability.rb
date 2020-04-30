@@ -3,6 +3,15 @@
 class Ability
   include CanCan::Ability
 
+  def intialize(current_admin)
+
+    if current_admin.super_admin?
+        can :manage, :all
+
+    end
+
+  end
+
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
@@ -15,10 +24,15 @@ class Ability
         newsfeed.user == user
     end
 
+    can :update, Newsfeed do |newsfeed|
+        newsfeed.user == user
+    end
+
     can :destroy, Newsfeed do |newsfeed|
         newsfeed.user == user
     end
-        
+    
+
     can :create, Newsfeed
     can :destroy, Newsfeed
     end
