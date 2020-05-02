@@ -5,7 +5,7 @@
 		    <%= render 'notice' %>
 			<h2 class="mx-5 mt-4 mb-4">Update admin </h2>
 			<hr>
-			<%= form_for @admin, url:{action:"admin_create"} do |f| %>
+			<%= form_for @admin, url:{action:"admin_update"} do |f| %>
 			<% if @admin.errors.any? %>
 			    <div id="error_explanation">
 			      <ul>

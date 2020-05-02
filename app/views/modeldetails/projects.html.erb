@@ -20,7 +20,7 @@
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
+          <th><% if can? :project_destroy, @projects %><input type="checkbox" id="parentcheck1" class="parentclcheck1" ><% end %></th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "project_name" %></th>
           <th scope="col"><%= sortable "created_at" %></th>
@@ -30,10 +30,10 @@
       <tbody>
       	<% @projects.each do |project| %>
     	    <tr>
-          <td><%= check_box_tag "project_id[]", project.id, false, class: "childcheck1" %></td>
+          <td><% if can? :project_destroy, @projects %><%= check_box_tag "project_id[]", project.id, false, class: "childcheck1" %><% end %></td>
     	 	  <td><%= project.id %></td>
     	 	  <td><%= link_to project.project_name, projectshow_admins_path(project), class: "text-success" %></td>
-    	      <td><%= project.created_at %></td>
+    	      <td><%= project.created_at.strftime("%A,%d %B,%Y") %></td>
             <td>
               <% if can? :project_edit, project%>
               <%= link_to "Edit", ad_project_edit_path(project) %>
@@ -46,9 +46,12 @@
     	 <% end %>
        </tbody>
     </table>
-    <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :pdf) }')",  class: 'btn btn-primary ml-5 mt-4' %>
-    <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :csv) }')",  class: 'btn btn-primary ml-5 mt-4' %>
+    <% if can? :project_destroy, @projects %>
+    <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
+    <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <% end %>
+    <% end %>
+    <div class="float-right"><%= pagy_bootstrap_nav(@pagy).html_safe %></div>
   </main>
   </div>
 </div>

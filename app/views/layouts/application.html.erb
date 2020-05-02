@@ -35,6 +35,11 @@
                 <%= link_to "Projects", projectsspec_path, class: "nav-link" %>
               </li>
               <% end %>
+              <% if current_admin && current_admin.role == "super_admin" %>
+              <li class="nav-item active">
+                <%= link_to "Roles", adminroles_path, class: "nav-link" %>
+              </li>
+              <% end %>
               <% if current_user %>
                 <li class="nav-item active">
                 <%= link_to "Projects",  dashboard_projectsdash_path , class: "nav-link" %>
@@ -89,15 +94,15 @@
         </nav>
       </header>
       <div ><%= yield %></div>
-      <% if current_admin && current_admin.super_admin? %>
+      <% if current_admin && current_admin.role == "super_admin" %>
       <div>
         <button type="button" class="btn btn-danger btn-sm disabled admin" disabled>Super Admin</button>
       </div>
-      <% elsif current_admin && current_admin.admin? %>
+      <% elsif current_admin && current_admin.role == "admin" %>
       <div>
         <button type="button" class="btn btn-success btn-sm disabled admin" disabled>Admin</button>
       </div>
-      <% elsif current_admin && current_admin.moderator? %>
+      <% elsif current_admin && current_admin.role == "moderator" %>
       <div>
         <button type="button" class="btn btn-success btn-sm disabled admin" disabled>Moderator</button>
       </div>

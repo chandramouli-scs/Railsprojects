@@ -1,0 +1,37 @@
+
+
+<div class="container-fluid">
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Roles</h2>
+			<hr>
+			<div class="row">
+				<div class="col-6">
+					<% @admins1.each do |admin| %>
+					<div class="mt-3 ml-3"><span class=" "><%= link_to admin.email.camelcase, adminrole_show_path(admin) %> -> <span class="text-danger"><%= admin.role.camelcase %></span></span><br></div>
+					<% end %>
+				</div>
+				<div class="ml-5 mt-5 col-5">
+					<strong><%=  @admin.email.upcase %></strong>
+					<%= form_for @admin, url:{action:"adminrole_update"} do |f| %>
+						<br>
+						<%= f.select :role, options_for_select([
+							["super_admin"],["admin"],["moderator"]] ) %>
+						<%= f.submit "update", class: "btn btn-success" %>
+					<% end %>
+				</div>
+			</div>
+			</div>
+	</main>
+	</div>
+</div>
+
+
+<%=  @admin.email %>
+<%= form_for @admin, url:{action:"adminrole_update"} do |f| %>
+	<%= f.select :role, options_for_select([
+		["super_admin"],["admin"],["moderator"]] ) %>
+	<%= f.submit "update" %>
+<% end %>

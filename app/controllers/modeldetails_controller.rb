@@ -1,8 +1,10 @@
 class ModeldetailsController < ApplicationController
+
+    include Pagy::Backend
   helper_method :sort_column, :sort_direction
   before_action :authenticate_admin!
   def admins
-    @admins = Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%")
+    @pagy, @admins = pagy(Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%"), items: 5)
     @admins1 = Admin.where(id: params[:admin_id])
     respond_to do |format|
       format.html 
@@ -19,7 +21,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def users
-    @users = User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    @pagy, @users = pagy(User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%"), items: 3)
     @users1 = User.where(id: params[:user_id])
     respond_to do |format|
       format.html 
@@ -41,7 +43,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def organisations
-    @organisations = Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%")
+    @pagy, @organisations = pagy(Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%"), items: 5)
     @organisations1 = Organisation.where(id: params[:organisation_id])
     respond_to do |format|
       format.html 
@@ -58,7 +60,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def projects
-    @projects = Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%")
+    @pagy, @projects = pagy(Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%"), items: 3)
     @projects1 = Project.where(id: params[:project_id])
     respond_to do |format|
       format.html 
@@ -119,7 +121,7 @@ class ModeldetailsController < ApplicationController
 
   
   def tasks
-    @tasks = Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%")
+    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 5)
     @tasks1 = Task.where(id: params[:task_id])
     respond_to do |format|
       format.html 
@@ -249,6 +251,34 @@ class ModeldetailsController < ApplicationController
     redirect_to users_admins_path, notice: 'User was successfully deleted.'
   end
 
+  def adminroles
+
+    if current_admin.role == "moderator" || current_admin.role == "admin" 
+      redirect_to root_path
+    else
+      @admins1 = Admin.all.order(id: :asc)
+    end
+
+  end
+
+  def adminrole_show
+    if current_admin.role == "super_admin"
+      @admin = Admin.find(params[:id])
+      @admins1 = Admin.all.order(id: :asc)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def adminrole_update
+    @adminrole = Admin.find(params[:id])
+    if @adminrole.update(adminrole_params)
+      redirect_to adminroles_path
+    else
+      render 'adminrole_show'
+  end
+end
+
   private 
 
   def sort_column
@@ -273,6 +303,10 @@ class ModeldetailsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:user_name, :first_name, :last_name, :phone_number, :email, :password, :password_confirmation, :organisation_id)
+  end
+
+  def adminrole_params
+    params.require(:admin).permit(:role)
   end
 
 end

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
 
   #admin - modeldetails
+  patch 'adminrole/update/:id', to: 'modeldetails#adminrole_update', as: 'adminrole_update' 
+  get 'adminrole/:id', to: 'modeldetails#adminrole_show', as: 'adminrole_show' 
+  get 'modeldetails/adminroles', to: 'modeldetails#adminroles', as: 'adminroles'
   get 'modeldetails/admins', as: 'details_admins'
   get 'admins/organisationsspec', to: 'modeldetails#organisationsview', as: 'organisationspec'
   get 'admins/projectsspec', to: 'modeldetails#projectsview', as: 'projectsspec'

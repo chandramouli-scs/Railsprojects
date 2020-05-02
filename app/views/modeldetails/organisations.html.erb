@@ -21,7 +21,7 @@
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
+          <th><% if can? :destroy, Organisation %><input type="checkbox" id="parentcheck1" class="parentclcheck1" ><% end %></th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "organisation_name" %></th>
           <th scope="col"><%= sortable "created_at" %></th>
@@ -31,10 +31,10 @@
       <tbody>
       	<% @organisations.each do |organisation| %>
     	    <tr>
-          <td><%= check_box_tag "organisation_id[]", organisation.id, false, class: "childcheck1" %></td>
+          <td><% if can? :destroy, Organisation %><%= check_box_tag "organisation_id[]", organisation.id, false, class: "childcheck1" %><% end %></td>
     	 	  <td><%= organisation.id %></td>
     	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
-    	      <td><%= organisation.created_at %></td>
+    	      <td><%= organisation.created_at.strftime("%A,%d %B,%Y") %></td>
     	      <td>
             <% if can? :edit, organisation%>
     	      	<%= link_to "Edit", edit_organisation_path(organisation) %>
@@ -47,9 +47,12 @@
     	 <% end %>
       </tbody>
     </table>
-    <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :pdf) }')",  class: 'btn btn-primary ml-5 mt-4' %>
-    <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :csv) }')",  class: 'btn btn-primary ml-5 mt-4' %>
+    <% if can? :destroy, Organisation %>
+    <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
+    <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <% end %>
+    <% end %>
+    <div class="float-right"><%= pagy_bootstrap_nav(@pagy).html_safe %></div>
   </main>
   </div>
 </div>

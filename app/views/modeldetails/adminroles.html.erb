@@ -1,0 +1,15 @@
+<div class="container-fluid">
+	<%= render partial: 'modeldetails/sidebar' %>
+	<main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+		<div class="container ml-1">
+			<%= render 'notice' %>
+			<h2 class="mx-5 mt-4 mb-4">Roles</h2>
+			<hr>
+			<% @admins1.each do |admin| %>
+			<span class="mx-3 "><%= link_to admin.email.camelcase, adminrole_show_path(admin) %> -> <span class="text-danger"><%= admin.role.camelcase %></span></span>
+			<% end %>
+			</div>
+	</main>
+	</div>
+</div>
+

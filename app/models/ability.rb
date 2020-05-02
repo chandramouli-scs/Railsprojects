@@ -3,11 +3,11 @@ class Ability
     
     def initialize(user)
 
-        if user.super_admin?
+        if user.role == "super_admin"
 
          can :manage, :all
 
-        elsif user.admin?
+        elsif user.role == "admin"
 
           can :project_edit , :all
           can :task_edit , :all
@@ -27,7 +27,7 @@ class Ability
           can :user_destroy, :all
           can :destroy, Organisation
 
-        elsif user.moderator?
+        elsif user.role == "moderator"
 
           can :project_edit , :all
           can :task_edit , :all
