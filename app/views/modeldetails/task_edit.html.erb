@@ -30,13 +30,13 @@
 			    	<%= f.select :project_id, Project.all.map  { |m1| [m1.project_name, m1.id]}, class: 'form-control status' %> 
 			    </div>
 			  	<div>
-			    	<br>
-			    	Attachment: <%= f.file_field :attachment %>
-			  	</div>
+				  	<%= f.label :cover %>
+				  	<%= f.file_field :cover %>
+				</div>
 			  	<br>
 			    <div class="actions">
 				    <br>
-				    <%= f.submit "Create task", class: "btn btn-success btn-block" %>
+				    <%= f.submit "Update task", class: "btn btn-success btn-block" %>
 			  	</div>
 			<% end %>
 		</div>

@@ -147,7 +147,7 @@ class ModeldetailsController < ApplicationController
     if @task.save
       redirect_to ad_task_show_path(@task), notice: 'Task was successfully Created'
     else
-      render 'new'
+      render 'task_new'
     end
   end
 
@@ -294,7 +294,7 @@ end
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :project_id, :user_id, :photo)
+    params.require(:task).permit(:task_name, :project_id, :user_id, :photo, :cover)
   end
 
   def admin_params

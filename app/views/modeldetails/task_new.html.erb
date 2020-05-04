@@ -29,17 +29,14 @@
 			    	<%= f.label :Project %>
 			    	<%= f.select :project_id, Project.all.map  { |m1| [m1.project_name, m1.id]}, class: 'form-control status' %> 
 			    </div>
-			  	  <!--
-				  <div>
-				    <br>
-				    Attachment: <%= f.file_field :attachment %>
-				  </div>
-				   -->
+
 				  <br>
 
 				  <div>
-				    Attachment: <%= f.file_field :photo, accept: 'image/jpg' %>   
+				  	<%= f.label :cover %>
+				  	<%= f.file_field :cover %>
 				  </div>
+
 				  <br>
 			  	<br>
 			    <div class="actions">
