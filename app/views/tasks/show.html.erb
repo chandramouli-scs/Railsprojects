@@ -6,11 +6,10 @@
 	  	<%= @task.task_name %></h4>
 	</div>
 	<div>
-		<h4 class="mb-5 mt-4 ml-3"><strong>Task attachment - </strong> <%= image_tag(@task.photo, style: "width:20%") %></h4>
+		<h4 class="mb-5 mt-4 ml-3"><strong>Task attachment - </strong> <td><%= image_tag("/tasks/#{@task.id}/#{@task.cover_filename}", style: "width:20%") if @task.cover_filename? %></td></h4>
 	</div>
 	<div>
 		<h4><strong>This task is assigned to </strong> <%= @task.project.project_name.upcase %> Project</h4>
 	</div>
 	</center>
 </div>
-<!--<%= image_tag @task.attachment.url(:medium) %> -->
