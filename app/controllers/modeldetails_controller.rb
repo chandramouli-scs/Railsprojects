@@ -121,7 +121,7 @@ class ModeldetailsController < ApplicationController
 
   
   def tasks
-    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 5)
+    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 3)
     @tasks1 = Task.where(id: params[:task_id])
     respond_to do |format|
       format.html 

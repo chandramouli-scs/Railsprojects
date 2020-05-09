@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_082100) do
+ActiveRecord::Schema.define(version: 2020_05_09_121922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_082100) do
     t.boolean "super_admin", default: false
     t.boolean "moderator", default: false
     t.string "role", default: "f"
+    t.integer "role_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -66,6 +67,22 @@ ActiveRecord::Schema.define(version: 2020_05_04_082100) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "permission_roles", force: :cascade do |t|
+    t.integer "permission_id"
+    t.integer "role_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string "subject_class"
+    t.string "action"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "project_name"
     t.bigint "user_id", null: false
@@ -74,6 +91,12 @@ ActiveRecord::Schema.define(version: 2020_05_04_082100) do
     t.bigint "organisation_id"
     t.index ["organisation_id"], name: "index_projects_on_organisation_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tasks", force: :cascade do |t|

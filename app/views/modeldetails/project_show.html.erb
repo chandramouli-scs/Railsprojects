@@ -18,7 +18,7 @@
           <tr>
             <td><%= tasks.id %></td>
             <td><%= tasks.task_name %></td>
-            <td><%= image_tag(tasks.photo, style: "width:90px") %></td>
+            <td><%= image_tag("/tasks/#{tasks.id}/#{tasks.cover_filename}", style: "width:90px") if tasks.cover_filename? %></td>
           </tr>
           <% end %>
         </tbody>
