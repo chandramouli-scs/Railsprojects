@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-
+  get 'roleindex', to: 'roles#index', as: 'roleindex'
   #admin - modeldetails
   patch 'adminrole/update/:id', to: 'modeldetails#adminrole_update', as: 'adminrole_update' 
   get 'adminrole/:id', to: 'modeldetails#adminrole_show', as: 'adminrole_show' 

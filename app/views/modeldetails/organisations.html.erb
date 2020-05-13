@@ -36,7 +36,7 @@
     	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
     	      <td><%= organisation.created_at.strftime("%A,%d %B,%Y") %></td>
     	      <td>
-            <% if can? :edit, organisation%>
+            <% if @admin_permissions || @edit_permissions %>
     	      	<%= link_to "Edit", edit_organisation_path(organisation) %>
               <% end %>
             <% if can? :destroy, organisation%>

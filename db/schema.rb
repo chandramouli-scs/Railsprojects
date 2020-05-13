@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_121922) do
+ActiveRecord::Schema.define(version: 2020_05_13_085500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_121922) do
     t.boolean "admin", default: false
     t.boolean "super_admin", default: false
     t.boolean "moderator", default: false
-    t.string "role", default: "f"
     t.integer "role_id"
+    t.string "rightq"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -67,20 +67,21 @@ ActiveRecord::Schema.define(version: 2020_05_09_121922) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "permission_roles", force: :cascade do |t|
-    t.integer "permission_id"
-    t.integer "role_id"
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.string "subject_class"
+    t.string "action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.string "subject_class"
-    t.string "action"
-    t.string "name"
-    t.string "description"
+  create_table "permissions_roles", force: :cascade do |t|
+    t.bigint "permission_id", null: false
+    t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
+    t.index ["role_id"], name: "index_permissions_roles_on_role_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -153,6 +154,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_121922) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "newsfeeds", "users"
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
   add_foreign_key "projects", "organisations"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"

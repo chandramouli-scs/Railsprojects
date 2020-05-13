@@ -35,7 +35,7 @@
     	 	  <td><%= link_to project.project_name, projectshow_admins_path(project), class: "text-success" %></td>
     	      <td><%= project.created_at.strftime("%A,%d %B,%Y") %></td>
             <td>
-              <% if can? :project_edit, project%>
+              <% if @admin_permissions || @edit_permissions %>
               <%= link_to "Edit", ad_project_edit_path(project) %>
               <% end %>
               <% if can? :project_destroy, project%>

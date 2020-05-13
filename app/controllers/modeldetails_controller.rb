@@ -1,4 +1,5 @@
 class ModeldetailsController < ApplicationController
+  before_action :load_permissions
 
     include Pagy::Backend
   helper_method :sort_column, :sort_direction
@@ -262,7 +263,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def adminrole_show
-    if current_admin.role == "super_admin"
+    if current_admin.super_admin?
       @admin = Admin.find(params[:id])
       @admins1 = Admin.all.order(id: :asc)
     else

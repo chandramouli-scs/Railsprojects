@@ -37,7 +37,7 @@
     	 	  <td><%= task.task_name %></td>
           <td><%= image_tag("/tasks/#{task.id}/#{task.cover_filename}", style: "width:90px") if task.cover_filename? %></td>
           <td>
-            <% if can? :task_edit, task %>
+            <% if @admin_permissions || @edit_permissions %>
               <%= link_to "Edit", ad_task_edit_path(task) %>
             <% end %>
             <% if can? :task_destroy, task %>

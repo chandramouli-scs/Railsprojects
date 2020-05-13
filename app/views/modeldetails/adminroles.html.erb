@@ -6,7 +6,7 @@
 			<h2 class="mx-5 mt-4 mb-4">Roles</h2>
 			<hr>
 			<% @admins1.each do |admin| %>
-			<span class="mx-3 "><%= link_to admin.email.camelcase, adminrole_show_path(admin) %> -> <span class="text-danger"><%= admin.role.camelcase %></span></span>
+			<span class="mx-3 "><%= link_to admin.email, adminrole_show_path(admin) %> -> <span class="text-danger"><%= admin.role %></span></span>
 			<% end %>
 			</div>
 	</main>

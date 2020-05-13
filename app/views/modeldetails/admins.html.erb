@@ -5,7 +5,7 @@
     <h2><p class="mx-5 mt-4 mb-4">Admins - <%= Admin.all.count %></p></h2>
     <div class="row container-fluid">
       <div class="col-12 col-lg-6">
-        <% if can? :admin_new, @admins %>
+        <% if can? current_admin.role.permissions.collect{|i| [i.subject_class.to_sym]}, @admin %>
         <h4><%= link_to "+ Create new Admin",  ad_admin_new_path, class: "btn btn-warning ml-5" %></h4>
         <% end %>
       </div>
@@ -36,7 +36,7 @@
     	 	  <td><%= admin.email %></td>
     	      <td><%= admin.created_at.strftime("%A,%d %B,%Y") %></td>
           <td>
-            <% if can? :admin_edit, admin%>
+            <% if @admin_permissions || @edit_permissions %>
               <%= link_to "Edit", ad_admin_edit_path(admin) %>
               <% end %>
             <% if can? :admin_destroy, admin%>

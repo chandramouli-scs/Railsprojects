@@ -35,7 +35,7 @@
                 <%= link_to "Projects", projectsspec_path, class: "nav-link" %>
               </li>
               <% end %>
-              <% if current_admin && current_admin.role == "super_admin" %>
+              <% if current_admin && current_admin.super_admin?  %>
               <li class="nav-item active">
                 <%= link_to "Roles", adminroles_path, class: "nav-link" %>
               </li>
