@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_085500) do
+ActiveRecord::Schema.define(version: 2020_05_14_091321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 2020_05_13_085500) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "moulis", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "test", default: [], array: true
+  end
+
   create_table "newsfeeds", force: :cascade do |t|
     t.text "post"
     t.bigint "user_id", null: false
@@ -76,10 +82,10 @@ ActiveRecord::Schema.define(version: 2020_05_13_085500) do
   end
 
   create_table "permissions_roles", force: :cascade do |t|
-    t.bigint "permission_id", null: false
     t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "permission_id"
     t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
     t.index ["role_id"], name: "index_permissions_roles_on_role_id"
   end
@@ -154,7 +160,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_085500) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "newsfeeds", "users"
-  add_foreign_key "permissions_roles", "permissions"
   add_foreign_key "permissions_roles", "roles"
   add_foreign_key "projects", "organisations"
   add_foreign_key "projects", "users"

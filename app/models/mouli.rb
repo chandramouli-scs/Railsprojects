@@ -1,0 +1,2 @@
+class Mouli < ApplicationRecord
+end

@@ -2,6 +2,15 @@ Rails.application.routes.draw do
 
 
   get 'roleindex', to: 'roles#index', as: 'roleindex'
+  get 'role/edit/:id', to: 'roles#edit', as: 'roleedit'
+  patch 'role/update/:id', to: 'roles#update'
+  post 'create', to: 'roles#create'
+  get 'role/new', to: 'roles#new', as: 'rolenew'
+  get 'role/adminrole_edit/:id', to: 'roles#adminrolemanage_edit', as: 'adminrolemanage_edit'
+  patch 'role/adminrole_update/:id', to: 'roles#adminrolemanage_update', as: 'adminmanage_update'
+
+
+
   #admin - modeldetails
   patch 'adminrole/update/:id', to: 'modeldetails#adminrole_update', as: 'adminrole_update' 
   get 'adminrole/:id', to: 'modeldetails#adminrole_show', as: 'adminrole_show' 

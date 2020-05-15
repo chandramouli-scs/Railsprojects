@@ -177,7 +177,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def admin_new
-    authorize! :admin_new, @admin
+    authorize! :admin_create, @admin
     @admin = Admin.new
   end
 

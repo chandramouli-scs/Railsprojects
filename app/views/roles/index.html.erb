@@ -1,5 +1,39 @@
-<div class="container">
-  <% @roles.each do |role| %>
-  <%= role.name %>
-  <% end %>
+<div class="container-fluid">
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container">
+    <%= render partial: 'modeldetails/notice' %>
+    <h2><p class="mx-5 mt-4 mb-4">Role managment</p></h2>
+    <div><%= link_to "+create Role", rolenew_path , class: "btn btn-success ml-5 mb-2"%></div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Manage Role</th>
+      <th scope="col">Permissions</th>
+      <th>Manage Permissions </th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @admins.each do |admin| %>
+    <tr>
+      <th scope="row"><%= admin.id %></th>
+      <td><%= admin.email %></td>
+      <td><%= admin.role.name %></td>
+      <td><%= link_to "Manage", adminrolemanage_edit_path(admin) %></td>
+      <td><% admin.role.permissions.each do |permission| %>
+      <% if admin.role.name == "super_admin" %>
+      <span class="text-danger">Super-Admin</span> 
+      <% else %> 
+      <%= permission.name %> ,
+      <% end %>
+      <% end %></td>
+      <td><%= link_to "Edit", roleedit_path(admin.role), class: "ml-4" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
+</main>

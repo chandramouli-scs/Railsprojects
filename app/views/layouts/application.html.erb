@@ -37,7 +37,7 @@
               <% end %>
               <% if current_admin && current_admin.super_admin?  %>
               <li class="nav-item active">
-                <%= link_to "Roles", adminroles_path, class: "nav-link" %>
+                <%= link_to "Roles", roleindex_path, class: "nav-link" %>
               </li>
               <% end %>
               <% if current_user %>
@@ -94,17 +94,13 @@
         </nav>
       </header>
       <div ><%= yield %></div>
-      <% if current_admin && current_admin.role == "super_admin" %>
+      <% if current_admin && current_admin.super_admin? %>
       <div>
         <button type="button" class="btn btn-danger btn-sm disabled admin" disabled>Super Admin</button>
       </div>
-      <% elsif current_admin && current_admin.role == "admin" %>
+      <% elsif current_admin %>
       <div>
-        <button type="button" class="btn btn-success btn-sm disabled admin" disabled>Admin</button>
-      </div>
-      <% elsif current_admin && current_admin.role == "moderator" %>
-      <div>
-        <button type="button" class="btn btn-success btn-sm disabled admin" disabled>Moderator</button>
+        <button type="button" class="btn btn-success btn-sm disabled admin" disabled><%= current_admin.role.name %></button>
       </div>
       <% end %>
       <br>

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 	  def load_permissions
 	    @admin_permissions = can? current_admin.role.permissions.collect{|i| [i.subject_class.to_sym]}, @admin
 	    @edit_permissions = current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['task_edit', 'all']) 
+	    @create_permissions = current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['admin_create', 'all']) 
+	    @delete_permissions = current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['task_destroy', 'all']) 
 	  end
 
 		def current_ability

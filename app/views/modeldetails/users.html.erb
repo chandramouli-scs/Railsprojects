@@ -5,7 +5,7 @@
     <h2><p class="mx-5 mt-4 mb-4">Users - <%= User.all.count %></p></h2>
     <div class="row container-fluid">
       <div class="col-12 col-lg-6">
-        <% if can? :user_new, @users %>
+        <% if @admin_permissions || @create_permissions %>
         <%= link_to "+ Create new User",  ad_user_new_path, class: "btn btn-warning ml-5" %>
         <% end %>
       </div>
@@ -23,7 +23,7 @@
     <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th> <% if can? :user_destroy, @users %><input type="checkbox" id="parentcheck1" class="parentclcheck1" > <% end %></th>
+          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
           <th scope="col"><%= sortable "id" %></th>
           <th scope="col"><%= sortable "user_name" %></th>
           <th scope="col"><%= sortable "first_name" %></th>
@@ -36,7 +36,7 @@
       <tbody>
       	<% @users.each do |user| %>
     	    <tr>
-            <td><% if can? :user_destroy, @users %><%= check_box_tag 'user_id[]', user.id , false, class: "childcheck1"%><% end %></td>
+            <td><%= check_box_tag 'user_id[]', user.id , false, class: "childcheck1"%></td>
     	 	    <td><%= user.id %></td>
     	      <td><%= user.user_name %></td>
     	      <td><%= user.first_name %></td>
@@ -47,7 +47,7 @@
             <% if @admin_permissions || @edit_permissions %>
               <%= link_to "Edit", ad_user_edit_path(user) %>
               <% end %>
-            <% if can? :user_destroy, user %>
+            <% if @admin_permissions || @delete_permissions %>
               <%= link_to "Delete", ad_user_show_path(user), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
               <% end %>
             </td>        
@@ -55,10 +55,8 @@
           <% end %>
        </tbody>
     </table>
-    <% if can? :user_destroy, @users %>
     <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ users_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ users_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
-       <% end %>
        <% end %>
        <div class="float-right"><%= pagy_bootstrap_nav(@pagy).html_safe %></div>
     <span></span>

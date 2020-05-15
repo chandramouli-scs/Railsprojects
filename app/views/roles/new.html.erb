@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container">
+    <%= render partial: 'modeldetails/notice' %>
+    <h2><p class="ml-5 mt-4 mb-4">Create new Role</p></h2>
+<div class="container">
+	<%= form_for @role, url:{action:"create"} do |f| %>
+		<% if @role.errors.any? %>
+		    <div id="error_explanation">
+		      <ul>
+		        <% @role.errors.full_messages.each do |message| %>
+		          <li class="text-danger"><%= message %></li>
+		        <% end %>
+		      </ul>
+		    </div>
+		<% end %>
+		<div>
+			<%= f.label :Role_name %>
+	    	<%= f.text_field :name, class: "form-control" %> 
+		</div>
+		<div>
+			<br>
+			<%= f.label :Permissions %><br>
+			<%= hidden_field_tag "role[permission_ids][]", nil %>
+			<% Permission.all.each do |permission| %>
+				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permission_ids.include?(permission.id) %>
+				<%= permission.name %>
+			<% end %>
+	    </div>
+	    <div class="actions">
+		    <br>
+		    <%= f.submit "Create Role", class: "btn btn-success btn-block" %>
+	  	</div>
+	<% end %>
+</div>
+</div>
+</main>
