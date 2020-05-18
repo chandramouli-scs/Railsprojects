@@ -22,7 +22,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def users
-    @pagy, @users = pagy(User.order(sort_column + " " + sort_direction).where("user_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?","%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%"), items: 3)
+    @users = User.all.order(id: "asc")
     @users1 = User.where(id: params[:user_id])
     respond_to do |format|
       format.html 

@@ -4,27 +4,19 @@
     <%= render 'notice' %>
     <h2><p class="mx-5 mt-4 mb-4">Tasks - <%= Task.all.count %></p></h2>
       <div class="row container-fluid">
-        <div class="col-12 col-lg-6">
         <% if @admin_permissions || @create_permissions %>
           <h4><%= link_to "+ Create new Task",  ad_task_new_path, class: "btn btn-warning ml-5" %></h4>
           <% end %>
-        </div>
-        <div class="col-12 col-lg-5 ml-3 mb-3">
-          <%= form_tag tasks_admins_path, :method => 'get' do %>
-          <%= text_field_tag :search, params[:search], style: "height: 35px" %>
-          <%= submit_tag("search", :name => nil, class: "btn btn-secondary btn-sm") %>
-          <% end %>
-        </div>
       </div>
 
 
     <%= form_tag tasks_admins_path(format: "csv"), :method => :get do %>
-    <table class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
+    <table id="dttb" class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
           <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
-          <th scope="col"><%= sortable "id" %></th>
-          <th scope="col"><%= sortable "task_name" %></th>
+          <th scope="col"><span class="text-primary up">id</span></th>
+          <th scope="col"><span class="text-primary up">task name</span></th>
           <th scope="col">Attachment</th>
           <th scope="col">Actions</th>
         </tr>
@@ -52,7 +44,38 @@
        <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ tasks_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ tasks_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
        <% end %>
-       <div class="float-right"><%= pagy_bootstrap_nav(@pagy).html_safe %></div>
   </main>
   </div>
 </div>
+<script >
+  $(document).ready(function() {
+    $('#dttb').DataTable({
+      "pageLength": 4
+    });
+  });
+</script>
+
+<style >
+  
+  .col-sm-12 .col-md-6 {
+    padding-top: 10px;
+    padding-left: 100px;
+  }
+  #dttb_filter {
+    padding-left: 230px;
+  }
+  .col-md-5 {
+    padding-top: 20px;
+    padding-left: 50px;
+  }
+
+  .col-md-7 {
+    padding-top: 20px;
+    padding-left: 440px;
+  }
+
+  .up {
+    text-transform: capitalize;
+  }
+
+</style>
