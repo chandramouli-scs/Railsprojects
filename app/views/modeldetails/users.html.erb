@@ -6,6 +6,7 @@
         <% if @admin_permissions || @create_permissions %>
         <%= link_to "+ Create new User",  ad_user_new_path, class: "btn btn-warning ml-5" %>
         <% end %>
+        <hr>
     
     <%= form_tag users_admins_path, :method => :get do %>
     <table id="dttb" class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
@@ -83,6 +84,7 @@
 
   .up {
     text-transform: capitalize;
+    cursor:pointer;
   }
 
 </style>

@@ -8,6 +8,7 @@
         <h4><%= link_to "+ Create new Admin",  ad_admin_new_path, class: "btn btn-warning ml-5" %></h4>
         <% end %>
       </div>
+      <hr>
     
     <%= form_tag details_admins_path, :method => :get do %>
     <table id="dttb" class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
@@ -75,6 +76,7 @@
 
   .up {
     text-transform: capitalize;
+    cursor:pointer
   }
 
 </style>

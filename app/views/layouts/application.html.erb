@@ -5,7 +5,7 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="https://code.jquery.com/jquery-3.5.1.js">
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -120,7 +120,6 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
       <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     </body>
 </html>
 
@@ -139,6 +138,63 @@
       right: 0;
       top: 115px;
   }
+  .dataTables_paginate span a {
+    padding: 4px 6px;
+    background-color: #0275d8;
+    margin: 0px 1px;
+    border: 1px solid black;
+    color: white;
+    border-radius: 5px;
+  }
+  .paginate_button {
+  }
+  .dataTables_info {
+    width: 50%;
+    float: left;
+    margin-left: 10px
+  }
+  .dataTables_paginate {
+    float: left;
+    margin-left: 350px;
+    margin-top: 40px;
+    cursor:pointer
+  }
+  .previous,.next {
+    padding: 5px 8px;
+  }
+  #dttb_filter {
+    width: 50%
+    float: left;
+    margin-left: 600px;
+  }
+  div#dttb_length.dataTables_length {
+    width: 50%;
+    margin-right: 0;
+    float: left;
+    margin-left: 40px;
+
+  }
+
+  select {
+    background: transparent;
+   width: 108px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 1;
+   border-radius: 0;
+   height: 30px;
+  }
+  #dttb_filter input {
+  width:160px;
+  height: 30px;
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  outline:none;
+  padding: 6px;
+  }
+
 </style>
 
 <script >
