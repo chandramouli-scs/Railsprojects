@@ -18,6 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem 'devise'
+gem 'devise_google_authenticator', path: 'cloned_gems/devise_google_authenticator-master'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'cancancan'

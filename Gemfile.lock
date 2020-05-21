@@ -1,3 +1,9 @@
+PATH
+  remote: cloned_gems/devise_google_authenticator-master
+  specs:
+    devise_google_authenticator (0.3.16)
+      rotp (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -196,6 +202,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rotp (1.6.1)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -267,6 +274,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   devise-authy
+  devise_google_authenticator!
   dotenv-rails
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
