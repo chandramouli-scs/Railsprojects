@@ -1,7 +1,8 @@
 PATH
-  remote: cloned_gems/devise_google_authenticator-master
+  remote: cloned_gems/devise_google_authenticator-compatibilites-rails5
   specs:
     devise_google_authenticator (0.3.16)
+      devise (>= 3.2)
       rotp (~> 1.6)
 
 GEM

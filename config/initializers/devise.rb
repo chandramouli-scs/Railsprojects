@@ -308,23 +308,30 @@ Devise.setup do |config|
   # ==> Devise Google Authenticator Extension
   # Configure extension for devise
 
+  
+
+
+
+  # ==> Devise Google Authenticator Extension
+  # Configure extension for devise
+
   # How long should the user have to enter their token. To change the default, uncomment and change the below:
-  config.ga_timeout = 3.minutes
+  # config.ga_timeout = 3.minutes
 
   # Change time drift settings for valid token values. To change the default, uncomment and change the below:
-  config.ga_timedrift = 3
+  # config.ga_timedrift = 3
 
   # Change setting to how long to remember device before requiring another token. Change to nil to turn feature off.
   # To change the default, uncomment and change the below:
-  config.ga_remembertime = 3.minutes
+  # config.ga_remembertime = 1.month
 
   # Change setting to assign the application name used by code generator. Defaults to Rails.application.class.parent_name.
   # To change the default, uncomment and change the below:
-  config.ga_appname = 'pmsdup.com'
+  # config.ga_appname = 'example.com'
 
   # Change setting to bypass the Display QR page immediately after a user sign's up
   # To change the default, uncomment and change the below. Defaults to false:
-  config.ga_bypass_signup = false
+  # config.ga_bypass_signup = true
 
 
 end
