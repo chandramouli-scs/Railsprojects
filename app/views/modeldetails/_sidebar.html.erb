@@ -12,5 +12,9 @@
                 <h6><strong><%= link_to "Projects", projects_admins_path %></strong></h6></li>
             <li>
                 <h6><strong><%= link_to "Tasks", tasks_admins_path %></strong></h6></li>
+                <% if current_admin.super_admin? %>
+           <!--  <li>
+                <h6><strong><%= link_to "Roles", roleindex_path %></strong></h6></li> -->
+                <% end %>
         </ul>
     </aside>

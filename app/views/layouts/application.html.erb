@@ -74,6 +74,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-left">
                   <button class="dropdown-item" type="button"><%= link_to "Edit details", edit_admin_registration_path, class: "btn" %></button>
+                  <button class="dropdown-item" type="button"><%= link_to "Google authenticator",  admin_displayqr_path, class: "btn" %></button>
                   <button class="dropdown-item " type="button"><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %></button>
                 </div>
               </div>

@@ -12,6 +12,22 @@ class Ability
     end
   end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # def initialize(user)
 
     #     if user.super_admin? 

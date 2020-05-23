@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container login-form bg-white">
   <div class="container mt-3"><center><span id="text1"><%= alert %></span></center></div>
-<h2 class="mx-5 mt-4 mb-4"><span class="text-secondary">Admin</span> Log in</h2>
+<h2 class="mx-5 mt-4 mb-4"><span class="text-danger">Admin</span> Log in</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -21,16 +21,31 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-success btn-block" %>
+    <center><%= f.submit "Log in", class: "btn btn-success greenbtn" %></center>
   </div>
   <br>
 <% end %>
 
 </div>
 
+
 <style>
     #text1 {
     color: red;
     font-size: 20px;
+  }
+  .login-form {
+    margin-top: 30px;
+    box-shadow: 5px 10px 8px #888888;
+    padding-top: 1%;
+    padding-bottom: 10%;
+    width: 28%;
+    border-radius: 8px;
+  }
+  body {
+    background-color:  #EEF0F0;
+  }
+  .greenbtn {
+    padding: 6px 54px;
   }
 </style>

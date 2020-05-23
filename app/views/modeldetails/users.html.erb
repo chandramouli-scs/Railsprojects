@@ -12,26 +12,37 @@
     <table id="dttb" class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
+          <th>
+          <% if @admin_permissions %>
+            <input type="checkbox" id="parentcheck1" class="parentclcheck1" >
+          <% end %>
+          </th>
           <th scope="col"><span class="text-primary up">id</span></th>
           <th scope="col"><span class="text-primary up">user name</span></th>
           <th scope="col"><span class="text-primary up">first name</span></th>
           <th scope="col"><span class="text-primary up">last name</span></th>
           <th scope="col"><span class="text-primary up"><center>email</center></span></th>
           <th scope="col"><span class="text-primary up">phone number</span></th>
+          <% if current_admin.role.name != "basic" %>
           <th scope="col">Actions</th>
+          <% end %>
           </tr>
       </thead>
       <tbody>
       	<% @users.each do |user| %>
     	    <tr>
-            <td><%= check_box_tag 'user_id[]', user.id , false, class: "childcheck1"%></td>
+            <td>
+            <% if @admin_permissions %>
+            <%= check_box_tag 'user_id[]', user.id , false, class: "childcheck1"%>
+            <% end %>
+            </td>
     	 	    <td><%= user.id %></td>
     	      <td><%= user.user_name %></td>
     	      <td><%= user.first_name %></td>
     	      <td><%= user.last_name %></td>
     	      <td><center><%= user.email %></center></td>
     	      <td><%= user.phone_number %></td>
+            <% if current_admin.role.name != "basic" %>
             <td>
             <% if @admin_permissions || @edit_permissions %>
               <%= link_to "Edit", ad_user_edit_path(user) %>
@@ -39,13 +50,16 @@
             <% if @admin_permissions || @delete_permissions %>
               <%= link_to "Delete", ad_user_show_path(user), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
               <% end %>
-            </td>        
+            </td>   
+            <% end %>     
     	    </tr>
           <% end %>
        </tbody>
     </table>
+    <% if @admin_permissions %>
     <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ users_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ users_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
+    <% end %>
        <% end %>
        
     
@@ -58,7 +72,7 @@
 <script >
   $(document).ready(function() {
     $('#dttb').DataTable({
-      "pageLength": 4
+      "pageLength": 10
     });
   });
 </script>

@@ -13,20 +13,31 @@
     <table id="dttb" class="table table-striped" style="border-radius: 10px; overflow: hidden;border-collapse: collapse;">
       <thead>
         <tr>
-          <th><input type="checkbox" id="parentcheck1" class="parentclcheck1" ></th>
+          <th>
+          <% if @admin_permissions %>
+          <input type="checkbox" id="parentcheck1" class="parentclcheck1" >
+          <% end %>
+          </th>
           <th scope="col"><span class="text-primary up">id</span></th>
           <th scope="col"><span class="text-primary up">organisation name</span></th>
           <th scope="col"><span class="text-primary up">created_at</span></th>
+          <% if current_admin.role.name != "basic" %>
           <th scope="col">Actions</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
       	<% @organisations.each do |organisation| %>
     	    <tr>
-          <td><%= check_box_tag "organisation_id[]", organisation.id, false, class: "childcheck1" %></td>
+          <td>
+          <% if @admin_permissions %>
+          <%= check_box_tag "organisation_id[]", organisation.id, false, class: "childcheck1" %>
+          <% end %>
+          </td>
     	 	  <td><%= organisation.id %></td>
     	 	  <td><%= link_to organisation.organisation_name, organisation_path(organisation), class: "text-success" %></td>
     	      <td><%= organisation.created_at.strftime("%A,%d %B,%Y") %></td>
+            <% if current_admin.role.name != "basic" %>
     	      <td>
             <% if @admin_permissions || @edit_permissions %>
     	      	<%= link_to "Edit", edit_organisation_path(organisation) %>
@@ -35,12 +46,15 @@
     	      	<%= link_to "Delete",  organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-2" %>
               <% end %>
     	      </td>
+            <% end %>
     	    </tr>
     	 <% end %>
       </tbody>
     </table>
+    <% if @admin_permissions %>
     <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ organisations_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
+    <% end %>
     <% end %>
   </main>
   </div>
@@ -49,7 +63,7 @@
 <script >
   $(document).ready(function() {
     $('#dttb').DataTable({
-      "pageLength": 4
+      "pageLength": 10
     });
   });
 </script>

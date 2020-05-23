@@ -1,5 +1,5 @@
-<div class="container">
-<h2 class="mx-5 mt-4 mb-4">Sign up</h2>
+<div class="container signup-form bg-white">
+<h1 class="mx-5 mt-4 mb-4 title">Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <% if resource.errors.any? %>
@@ -65,18 +65,35 @@
 
   <div class="actions">
     <br>
-    <%= f.submit "Sign up", class: "btn btn-warning btn-block" %>
+    <center><%= f.submit "Sign up", class: "btn btn-warning yellowbtn" %></center>
   </div>
 <% end %>
 <br>
 <span class="mr-5"><strong>Already an user?</strong> Please log-in</span>
 <%= render "devise/shared/links" %>
-<div class="mb-5"><br></div>
+<div class="mb-1"><br></div>
 </div>
 <style >
 
 ul {
     list-style: none;
     margin: 0 0 18px 0;
+  }
+  .signup-form {
+    width: 38%;
+    border-radius: 8px;
+    margin-top: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    box-shadow: 5px 10px 8px #888888;
+  }
+  body {
+    background-color: #EEF0F0;
+  }
+  .title {
+    color: #DC8E1E ;
+  }
+  .yellowbtn {
+    padding: 11px 94px;
   }
 </style>
