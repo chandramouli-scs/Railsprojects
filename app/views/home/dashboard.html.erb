@@ -8,14 +8,16 @@
 			<strong><%= link_to "+ Create new Project", new_project_path, class: "btn btn-info btn-block mb-3" %></strong>
 			<div class="card text-center">
 			  <div class="card-header bg-warning">
-			    <h5>Projects (<%= current_user.projects.count %>)</h5>
+			    <h5>Projects (<%= current_user.projects.where(status: "approved").count %>)</h5>
 			  </div>
 			  <div class="card-body">
 			  	<% if current_user.projects.count == 0 %>
 			  		<h5>No projects, Create one now</h5>
 			  	<% else %>
 			  	<% current_user.projects.each do |pro| %>
+			  	<% if pro.status == "approved" %>
 			    	<h5 class="card-title"><%= link_to pro.project_name, project_path(pro) %></h5>
+			    	<% end %>
 				<% end %>
 				<% end %>
 			  </div>

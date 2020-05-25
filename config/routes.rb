@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get 'role/adminrole_edit/:id', to: 'roles#adminrolemanage_edit', as: 'adminrolemanage_edit'
   patch 'role/adminrole_update/:id', to: 'roles#adminrolemanage_update', as: 'adminmanage_update'
 
+  get 'projectstatus',to: 'modeldetails#projectstatus', as: 'projectstatus'
+  get 'projectstatus_approve/:id', to: 'modeldetails#projectstatus_edit', as: 'projectstatus_edit'
+  patch 'projectstatus_update/:id', to: 'modeldetails#projectstatus_update', as: 'projectstatus_update'
+  get 'projectstatus_reject', to: 'modeldetails#projectstatus_reject', as: 'projectstatus_reject'
+  get 'projectstatus_reject_edit/:id', to: 'modeldetails#projectstatus_reject_edit', as: 'projectstatus_reject_edit'
+  patch 'projectstatus_reject_update/:id', to: 'modeldetails#projectstatus_reject_update', as: 'projectstatus_reject_update'
 
 
   #admin - modeldetails
@@ -29,7 +35,7 @@ Rails.application.routes.draw do
   get 'modeldetails/project_show/:id', to: 'modeldetails#project_show', as: 'projectshow_admins'
   get 'modeldetails/project_new', to: 'modeldetails#project_new', as: 'ad_project_new'
   get 'modeldetails/project_edit/:id', to: 'modeldetails#project_edit', as: 'ad_project_edit'
-  post 'create', to: 'modeldetails#project_create'
+  post 'project/create', to: 'modeldetails#project_create'
   patch 'update/:id', to: 'modeldetails#project_update'
   delete 'modeldetails/project_show/:id', to: 'modeldetails#project_destroy'
   get 'modeldetails/project_details/:id', to: 'modeldetails#project_details', as: 'projectdetails_admins'

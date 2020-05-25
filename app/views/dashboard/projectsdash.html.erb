@@ -6,6 +6,7 @@
       <th scope="col">Id</th>
       <th scope="col">Project name</th>
       <th scope="col">Created at</th>
+      <th scope="col">Status</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -15,6 +16,15 @@
 	 	  <td><%= proj.id %></td>
 	 	  <td><%= link_to proj.project_name, project_path(proj) %></td>
 	      <td><%= proj.created_at %></td>
+       <td> 
+        <% if proj.status == "approve" %>
+          <span class="text-success">Approved</span>
+        <% elsif proj.status == "reject" %>
+          <span class="text-danger">Rejected</span>
+          <% elsif proj.status == "pending" %>
+          <span class="text-warning">Pending</span>
+        <% end %>
+      </td>
 	      <td>
 	      	<%= link_to "Edit", edit_project_path(proj) %>
 	      	<%= link_to "Delete",  project_path(proj), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger ml-1" %>

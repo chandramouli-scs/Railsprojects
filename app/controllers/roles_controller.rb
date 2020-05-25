@@ -2,7 +2,7 @@ class RolesController < ApplicationController
 
 	def index 
 	  @roles = Role.all
-	  @admins = Admin.all.order(id: "asc")
+	  @admins = Admin.where(super_admin: false).order(id: :asc)
 	end
 
 	def new

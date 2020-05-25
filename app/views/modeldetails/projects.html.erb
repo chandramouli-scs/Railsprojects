@@ -4,8 +4,12 @@
     <%= render 'notice' %>
     <h2><p class="mx-5 mt-4 mb-4">Projects - <%= Project.all.count %></p></h2>
     <div class="row container-fluid">
-        <% if @admin_permissions || @create_permissions %>
+        <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['project_create', 'all']) || current_admin.super_admin?  %>
         <h4><%= link_to "+ Create new Project",  ad_project_new_path, class: "btn btn-warning ml-5" %></h4>
+        <h4><%= link_to "Pending Projects (#{Project.where(status: "pending").count})",  projectstatus_path, class: "btn btn-success ml-5" %></h4>
+        <% end %>
+        <% if current_admin.super_admin? %>
+        <h4><%= link_to "Rejected Projects (#{Project.where(status: "reject").count})",  projectstatus_reject_path, class: "btn btn-danger ml-5" %></h4>
         <% end %>
     </div>
     <hr>
@@ -14,14 +18,15 @@
       <thead>
         <tr>
           <th>
-          <% if @admin_permissions %>
+          <% if current_admin.super_admin?  %>
           <input type="checkbox" id="parentcheck1" class="parentclcheck1" >
           <% end %>
           </th>
           <th scope="col"><span class="text-primary up">id</span></th>
           <th scope="col"><span class="text-primary up">project name</span></th>
           <th scope="col"><span class="text-primary up">created at</span></th>
-          <% if current_admin.role.name != "basic" %>
+          <th scope="col"><span class="text-primary up">Status</span></th>
+          <% if current_admin.role.name != "read" %>
           <th scope="col">Actions</th>
           <% end %>
         </tr>
@@ -30,19 +35,28 @@
       	<% @projects.each do |project| %>
     	    <tr>
           <td>
-          <% if @admin_permissions %>
+          <% if current_admin.super_admin?  %>
           <%= check_box_tag "project_id[]", project.id, false, class: "childcheck1" %>
           <% end %>
           </td>
     	 	  <td><%= project.id %></td>
     	 	  <td><%= link_to project.project_name, projectshow_admins_path(project), class: "text-success" %></td>
     	      <td><%= project.created_at.strftime("%A,%d %B,%Y") %></td>
-            <% if current_admin.role.name != "basic" %>
             <td>
-              <% if @admin_permissions || @edit_permissions %>
+              <% if project.status == "approve" %>
+                <span class="text-success">Approved</span>
+              <% elsif  project.status == "pending" %>
+                <span class="text-warning">Pending</span>
+              <% elsif  project.status == "reject" %>
+                <span class="text-danger">Rejected</span>
+              <% end %>
+            </td>
+            <% if current_admin.role.name != "read" %>
+            <td>
+              <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['project_edit', 'all']) || current_admin.super_admin?   %>
               <%= link_to "Edit", ad_project_edit_path(project) %>
               <% end %>
-              <% if @admin_permissions || @delete_permissions %>
+              <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['project_destroy', 'all']) || current_admin.super_admin?  %>
               <%= link_to "Delete", projectshow_admins_path(project), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
               <% end %>
             </td>
@@ -51,7 +65,7 @@
     	 <% end %>
        </tbody>
     </table>
-    <% if @admin_permissions %>
+    <% if current_admin.super_admin?  %>
     <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ projects_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <% end %>

@@ -4,7 +4,7 @@
     <%= render 'notice' %>
     <h2><p class="mx-5 mt-4 mb-4">Tasks - <%= Task.all.count %></p></h2>
       <div class="row container-fluid">
-        <% if @admin_permissions || @create_permissions %>
+        <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['task_create', 'all']) || current_admin.super_admin?  %>
           <h4><%= link_to "+ Create new Task",  ad_task_new_path, class: "btn btn-warning ml-5" %></h4>
           <% end %>
       </div>
@@ -15,14 +15,14 @@
       <thead>
         <tr>
           <th>
-          <% if @admin_permissions %>
+          <% if current_admin.super_admin?   %>
           <input type="checkbox" id="parentcheck1" class="parentclcheck1" >
           <% end %>
           </th>
           <th scope="col"><span class="text-primary up">id</span></th>
           <th scope="col"><span class="text-primary up">task name</span></th>
           <th scope="col">Attachment</th>
-          <% if current_admin.role.name != "basic" %>
+          <% if current_admin.role.name != "read" %>
           <th scope="col">Actions</th>
           <% end %>
         </tr>
@@ -31,19 +31,19 @@
       	<% @tasks.each do |task| %>
     	    <tr>
             <td>
-          <% if @admin_permissions %>
+          <% if current_admin.super_admin?  %>
           <%= check_box_tag 'task_id[]', task.id, false, class: "childcheck1" %>
           <% end %>
           </td>
     	 	  <td><%= task.id %></td>
     	 	  <td><%= task.task_name %></td>
           <td><%= image_tag("/tasks/#{task.id}/#{task.cover_filename}", style: "width:90px") if task.cover_filename? %></td>
-          <% if current_admin.role.name != "basic" %>
+          <% if current_admin.role.name != "read" %>
           <td>
-            <% if @admin_permissions || @edit_permissions %>
+            <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['task_edit', 'all']) || current_admin.super_admin?  %>
               <%= link_to "Edit", ad_task_edit_path(task) %>
             <% end %>
-            <% if @admin_permissions || @delete_permissions %>
+            <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['task_destroy', 'all']) || current_admin.super_admin?  %>
               <%= link_to "Delete", ad_task_show_path(task), method: :delete, data: { confirm: 'Are you sure to Delete?' }, class: "text-danger pl-2" %>
               <% end %>
                 
@@ -53,7 +53,7 @@
     	 <% end %>
        </tbody>
     </table>
-    <% if @admin_permissions %>
+    <% if current_admin.super_admin?  %>
        <%= submit_tag "Export to pdf", onClick: "$(this).closest('form').attr('action', '#{ tasks_admins_path(format: :pdf) }')",  class: 'btn btn-info ml-5 mt-4' %>
     <%= submit_tag "Export to csv", onClick: "$(this).closest('form').attr('action', '#{ tasks_admins_path(format: :csv) }')",  class: 'btn btn-info ml-5 mt-4' %>
        <% end %>

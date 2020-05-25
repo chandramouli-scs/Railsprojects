@@ -5,7 +5,7 @@ class ModeldetailsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_admin!
   def admins
-    @pagy, @admins = pagy(Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%"), items: 5)
+    @pagy, @admins = pagy(Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%"), items: 10)
     @admins1 = Admin.where(id: params[:admin_id])
     respond_to do |format|
       format.html 
@@ -44,7 +44,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def organisations
-    @pagy, @organisations = pagy(Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%"), items: 5)
+    @pagy, @organisations = pagy(Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%"), items: 10)
     @organisations1 = Organisation.where(id: params[:organisation_id])
     respond_to do |format|
       format.html 
@@ -61,7 +61,7 @@ class ModeldetailsController < ApplicationController
   end
 
   def projects
-    @pagy, @projects = pagy(Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%"), items: 3)
+    @pagy, @projects = pagy(Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%"), items: 10)
     @projects1 = Project.where(id: params[:project_id])
     respond_to do |format|
       format.html 
@@ -122,7 +122,7 @@ class ModeldetailsController < ApplicationController
 
   
   def tasks
-    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 3)
+    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 10)
     @tasks1 = Task.where(id: params[:task_id])
     respond_to do |format|
       format.html 
@@ -280,6 +280,40 @@ class ModeldetailsController < ApplicationController
   end
 end
 
+  def projectstatus
+    @projects = Project.where(status: "pending")
+  end 
+
+  def projectstatus_edit
+    @project = Project.find(params[:id])
+  end
+
+  def projectstatus_update
+    @project = Project.find(params[:id])
+    if @project.update(projectstatus_params)
+      redirect_to  projectstatus_path, notice: "Project status has been set successfully"
+    else
+      render 'projectstatus_edit'
+    end
+  end
+
+  def projectstatus_reject
+    @project = Project.where(status: "reject")
+  end
+
+  def projectstatus_reject_edit
+    @project = Project.find(params[:id])
+  end
+
+  def projectstatus_reject_update
+    @project = Project.find(params[:id])
+    if @project.update(projectstatus_reject_params)
+      redirect_to  projectstatus_reject_path, notice: "Project status has been updated successfully"
+    else
+      render 'projectstatus_reject_edit'
+    end
+  end
+
   private 
 
   def sort_column
@@ -308,6 +342,14 @@ end
 
   def adminrole_params
     params.require(:admin).permit(:role)
+  end
+
+  def projectstatus_params
+    params.require(:project).permit(:status)
+  end
+
+  def projectstatus_reject_params
+    params.require(:project).permit(:status)
   end
 
 end

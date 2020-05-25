@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+    <%= render 'notice' %>
+    <h2 class="ml-5 mt-5 mb-4 text-danger">Edit Rejected Project</h2>
+    <div class="ml-3">
+    <center>
+    <strong>Project name : </strong><%= @project.project_name %><br><br>
+    <strong>Created user : </strong><%= @project.user.user_name %><br>
+    <%= form_for @project, url:{action:"projectstatus_reject_update"} do |f| %>
+    <br>
+    	<strong>Set status : <%= f.select :status, ["approve","reject"] %></strong><br><br>
+    	<%= f.submit "Update", class: "btn btn-success" %>
+    <% end %>
+    </center>
+    </div>
+	</main>
+	</div>

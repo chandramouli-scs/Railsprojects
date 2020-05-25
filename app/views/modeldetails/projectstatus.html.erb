@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container-fluid'">
+    <%= render 'notice' %>
+    <h2 class="ml-5 mt-3 mb-5">Pending Approval Projects (<%= Project.where(status: "pending").count %>)</h2>
+    <table class="table table-striped">
+	  <thead class="text-primary">
+	    <tr>
+	      <th scope="col">id</th>
+	      <th scope="col">Project Name</th>
+	      <th scope="col">created user</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @projects.each do |proj| %>
+	    <tr>
+	      <td><%= proj.id %></td>
+	      <td><%= proj.project_name.camelcase %></td>
+	      <td><%= proj.user.user_name.camelcase %></td>
+	      <td><%= link_to "Approve/Reject", projectstatus_edit_path(proj), class: "text-success"  %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+
+  </main>
+  </div>
