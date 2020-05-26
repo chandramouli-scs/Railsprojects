@@ -9,7 +9,7 @@
 		<strong>Project Title:</strong> <%= @project.project_name.camelcase %><br><br>
 		<strong>Create by User :</strong> <%= @project.user.user_name.camelcase %><br><br>
 		<%= form_for @project, url:{action:"projectstatus_update"} do |f| %>
-		<strong>Set status : <%= f.select :status, ["approve","reject"] %></strong><br> 
+		<strong>Set status : <%= f.select :status, ["approve","reject"] %></strong><br>
 		<br>
 		<%= f.submit "Submit", class: "btn btn-success" %>
 		<% end %>

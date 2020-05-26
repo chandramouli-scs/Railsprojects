@@ -290,7 +290,17 @@ end
 
   def projectstatus_update
     @project = Project.find(params[:id])
+    @user = @project.user_id
+    @wallet = Wallet.where(user_id: @user)
+    @balance = @wallet.first.balance
+    @approve = 50
+    @reject = 10
+
     if @project.update(projectstatus_params)
+      ActiveRecord::Base.transaction do
+
+        @wallet.update(balance: @balance + @approve  )
+      end
       redirect_to  projectstatus_path, notice: "Project status has been set successfully"
     else
       render 'projectstatus_edit'

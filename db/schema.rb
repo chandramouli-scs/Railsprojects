@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_044832) do
+ActiveRecord::Schema.define(version: 2020_05_26_104415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,15 @@ ActiveRecord::Schema.define(version: 2020_05_25_044832) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.string "status"
+    t.integer "coins"
+    t.bigint "wallet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wallet_id"], name: "index_transactions_on_wallet_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -163,6 +172,14 @@ ActiveRecord::Schema.define(version: 2020_05_25_044832) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "wallets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "newsfeeds", "users"
   add_foreign_key "permissions_roles", "roles"
@@ -170,4 +187,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_044832) do
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users"
+  add_foreign_key "transactions", "wallets"
+  add_foreign_key "wallets", "users"
 end

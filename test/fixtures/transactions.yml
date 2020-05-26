@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  coins: 1
+  wallet: one
+
+two:
+  status: MyString
+  coins: 1
+  wallet: two

@@ -15,7 +15,7 @@
 			  		<h5>No projects, Create one now</h5>
 			  	<% else %>
 			  	<% current_user.projects.each do |pro| %>
-			  	<% if pro.status == "approved" %>
+			  	<% if pro.status == "approve" %>
 			    	<h5 class="card-title"><%= link_to pro.project_name, project_path(pro) %></h5>
 			    	<% end %>
 				<% end %>
@@ -42,4 +42,5 @@
 			</div>
 		</div>
 	</div>
+	coins = <%= current_user.wallet.balance %>
 </div>
