@@ -291,14 +291,19 @@ end
   def projectstatus_update
     @project = Project.find(params[:id])
     @status = params[:project][:status]
-    @commit = params[:commit]
-    # puts "testing----------------"
+    # puts "------------------"
     # puts @status
-    # puts @commit
     @user = @project.user_id
     @wallet = Wallet.where(user_id: @user)
     @balance = @wallet.first.balance
-    @approve = 50
+    @length = @project.project_name.length
+    if @length >= 10
+      @approve = 50
+    elsif @length >=4 && @length <=7
+      @approve = 40
+    else
+      @approve = 20
+    end
     @reject = 10
 
     if @project.update(projectstatus_params)
