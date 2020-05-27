@@ -1,5 +1,4 @@
 class Wallet < ApplicationRecord
-  has_many :transactions
   belongs_to :user
 
   validates :balance, presence: true, numericality: true

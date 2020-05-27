@@ -9,7 +9,7 @@
     <strong>Created user : </strong><%= @project.user.user_name %><br>
     <%= form_for @project, url:{action:"projectstatus_reject_update"} do |f| %>
     <br>
-    	<strong>Set status : <%= f.select :status, ["approve","reject"] %></strong><br><br>
+    	<strong>Set status : <%= f.select :status, ["approve"] %></strong><br><br>
     	<%= f.submit "Update", class: "btn btn-success" %>
     <% end %>
     </center>

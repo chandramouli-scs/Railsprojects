@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-
+  get 'user/:id/transactions',to: 'transactions#transactions_user', as: "transactions_user"
+  
   get 'roleindex', to: 'roles#index', as: 'roleindex'
   get 'role/edit/:id', to: 'roles#edit', as: 'roleedit'
   patch 'role/update/:id', to: 'roles#update'

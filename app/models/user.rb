@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :newsfeeds
 	has_many :projects, dependent: :destroy
 	has_many :tasks
+  has_many :transactions
   has_one :wallet
 	belongs_to :organisation 
   validates :user_name, :uniqueness => {:case_sensitive => false}

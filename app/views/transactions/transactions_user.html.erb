@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <%= render partial: 'modeldetails/sidebar' %>
+  <main class="col-12 col-md-10 col-sm-12 p-0 container">
+    <%= render partial: 'modeldetails/notice' %>
+    <h2 class="ml-5 mt-3 mb-3">Transactions of <%= @user.user_name.camelcase %> </h2>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">id</th>
+	      <th scope="col">Created at</th>
+	      <th scope="col">Transaction type</th>
+	      <th scope="col">Balance</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @user.transactions.all.each do |trans| %>
+	    <tr>
+	      <td><%= trans.id %></td>
+	      <td><%= trans.created_at %></td>
+	      <% if trans.status == "approve" %>
+	      	<td><span class="text-success">Credit</span></td>
+	      <% elsif trans.status == "reject" %>
+	      	<td><span class="text-danger">Debit</span></td>
+	      <% end %>
+	      <% if trans.status == "approve" %>
+	      	<td> <span class="text-success"><%= trans.coins %></span></td>
+	      <% elsif trans.status == "reject" %>
+	      	<td>-<span class="text-danger"><%= trans.coins %></span></td>
+	      <% end %>
+	    </tr>
+	    <% end %>
+	    <tr>
+	    	<th></th>
+	    	<th></th>
+	    	<th>Total Balance</th>
+	    	<th><%= @user.wallet.balance %></th>
+	    </tr>
+	  </tbody>
+	</table>
+</main>
+</div>

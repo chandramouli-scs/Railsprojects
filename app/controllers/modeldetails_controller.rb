@@ -290,6 +290,11 @@ end
 
   def projectstatus_update
     @project = Project.find(params[:id])
+    @status = params[:project][:status]
+    @commit = params[:commit]
+    # puts "testing----------------"
+    # puts @status
+    # puts @commit
     @user = @project.user_id
     @wallet = Wallet.where(user_id: @user)
     @balance = @wallet.first.balance
@@ -297,9 +302,14 @@ end
     @reject = 10
 
     if @project.update(projectstatus_params)
-      ActiveRecord::Base.transaction do
-
-        @wallet.update(balance: @balance + @approve  )
+        ActiveRecord::Base.transaction do
+        if @status == "approve"
+          Transaction.create(user_id: @user, coins: @approve, status: "approve")
+          @wallet.update(balance: @balance + @approve)
+        elsif @status == "reject"
+          Transaction.create(user_id: @user, coins: @reject, status: "reject")
+          @wallet.update(balance: @balance - @reject)
+        end
       end
       redirect_to  projectstatus_path, notice: "Project status has been set successfully"
     else
@@ -317,7 +327,24 @@ end
 
   def projectstatus_reject_update
     @project = Project.find(params[:id])
+    @status = params[:project][:status]
+    @commit = params[:commit]
+    @user = @project.user_id
+    @wallet = Wallet.where(user_id: @user)
+    @balance = @wallet.first.balance
+    @approve = 50
+    @reject = 10
+
     if @project.update(projectstatus_reject_params)
+      ActiveRecord::Base.transaction do
+        if @status == "approve"
+          Transaction.create(user_id: @user, coins: @approve, status: "approve")
+          @wallet.update(balance: @balance + @approve)
+        elsif @status == "reject"
+          Transaction.create(user_id: @user, coins: @reject, status: "reject")
+          @wallet.update(balance: @balance - @reject)
+        end
+      end
       redirect_to  projectstatus_reject_path, notice: "Project status has been updated successfully"
     else
       render 'projectstatus_reject_edit'

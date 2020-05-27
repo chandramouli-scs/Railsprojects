@@ -19,10 +19,11 @@
           </th>
           <th scope="col"><span class="text-primary up">id</span></th>
           <th scope="col"><span class="text-primary up">user name</span></th>
-          <th scope="col"><span class="text-primary up">first name</span></th>
-          <th scope="col"><span class="text-primary up">last name</span></th>
           <th scope="col"><span class="text-primary up"><center>email</center></span></th>
           <th scope="col"><span class="text-primary up">phone number</span></th>
+          <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['user_create', 'all']) || current_admin.super_admin? %>
+          <th>Transactions</th>
+          <% end %>
           <% if current_admin.role.name != "read" %>
           <th scope="col">Actions</th>
           <% end %>
@@ -38,10 +39,11 @@
             </td>
     	 	    <td><%= user.id %></td>
     	      <td><%= user.user_name %></td>
-    	      <td><%= user.first_name %></td>
-    	      <td><%= user.last_name %></td>
     	      <td><center><%= user.email %></center></td>
     	      <td><%= user.phone_number %></td>
+            <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['user_create', 'all']) || current_admin.super_admin? %>
+            <td><%= link_to "show", transactions_user_path(user),class: "text-success" %></td>
+            <% end %>
             <% if current_admin.role.name != "read" %>
             <td>
             <% if current_admin.role.permissions.collect{|i| [i.subject_class, i.action]}.include?(['user_edit', 'all']) || current_admin.super_admin?  %>
