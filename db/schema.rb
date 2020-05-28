@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_041556) do
+ActiveRecord::Schema.define(version: 2020_05_28_054858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,10 +134,13 @@ ActiveRecord::Schema.define(version: 2020_05_27_041556) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "status"
-    t.integer "coins"
+    t.decimal "coins"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.decimal "instance_bal"
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_transactions_on_project_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -180,7 +183,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_041556) do
 
   create_table "wallets", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "balance"
+    t.decimal "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wallets_on_user_id"
@@ -193,6 +196,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_041556) do
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users"
+  add_foreign_key "transactions", "projects"
   add_foreign_key "transactions", "users"
   add_foreign_key "wallets", "users"
 end

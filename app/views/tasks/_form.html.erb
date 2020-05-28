@@ -16,7 +16,7 @@
   </div>
   <div>
     <strong><%= form.label :Project %></strong>
-    <%= form.select :project_id, current_user.projects.map  { |m1| [m1.project_name, m1.id] if m1.status == "approved" } %> 
+    <%= form.select :project_id, current_user.projects.where(status: "approve").map  { |m1| [m1.project_name, m1.id] } %> 
   </div>
 
   <br>

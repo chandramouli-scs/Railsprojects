@@ -55,8 +55,7 @@
             <span class="mt-2 mt-md-0"> 
               <!-- Login and Logout buttons -->
               <% if current_user %>
-              <%= link_to "wallet - #{current_user.wallet.balance}", transactions_user_for_path(current_user.id) %>
-              <span class="text-white inc">wallet</span><span class="text-white"> - <%= current_user.wallet.balance %></span>
+              <span ><%= link_to "wallet : #{current_user.wallet.balance}", transactions_user_for_path(current_user.id), class: "text-white nav-item active inc" %></span>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <strong><%= current_user.user_name.upcase %></strong>
@@ -199,7 +198,7 @@
   }
 
   .inc {
-    font-size: 26px;
+    font-size: 20px;
   }
 
 </style>

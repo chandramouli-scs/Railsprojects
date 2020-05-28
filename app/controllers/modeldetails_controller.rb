@@ -296,23 +296,24 @@ end
     @user = @project.user_id
     @wallet = Wallet.where(user_id: @user)
     @balance = @wallet.first.balance
+    @proj_id = @project.id
     @length = @project.project_name.length
     if @length >= 10
-      @approve = 50
-    elsif @length >=4 && @length <=7
-      @approve = 40
+      @approve = 50.6
+    elsif @length >=5 && @length <=7
+      @approve = 40.4
     else
-      @approve = 20
+      @approve = 20.7
     end
     @reject = 10
 
     if @project.update(projectstatus_params)
         ActiveRecord::Base.transaction do
         if @status == "approve"
-          Transaction.create(user_id: @user, coins: @approve, status: "approve")
+          Transaction.create(user_id: @user, coins: @approve, status: "approve", instance_bal: @balance, project_id: @proj_id)
           @wallet.update(balance: @balance + @approve)
         elsif @status == "reject"
-          Transaction.create(user_id: @user, coins: @reject, status: "reject")
+          Transaction.create(user_id: @user, coins: @reject, status: "reject", instance_bal: @balance, project_id: @proj_id)
           @wallet.update(balance: @balance - @reject)
         end
       end
@@ -337,16 +338,24 @@ end
     @user = @project.user_id
     @wallet = Wallet.where(user_id: @user)
     @balance = @wallet.first.balance
-    @approve = 50
+    @proj_id = @project.id
+    @length = @project.project_name.length
+    if @length >= 10
+      @approve = 50.6
+    elsif @length >=5 && @length <=7
+      @approve = 40.4
+    else
+      @approve = 20.7
+    end
     @reject = 10
 
     if @project.update(projectstatus_reject_params)
       ActiveRecord::Base.transaction do
         if @status == "approve"
-          Transaction.create(user_id: @user, coins: @approve, status: "approve")
+          Transaction.create(user_id: @user, coins: @approve, status: "approve", instance_bal: @balance, project_id: @proj_id)
           @wallet.update(balance: @balance + @approve)
         elsif @status == "reject"
-          Transaction.create(user_id: @user, coins: @reject, status: "reject")
+          Transaction.create(user_id: @user, coins: @reject, status: "reject", instance_bal: @balance, project_id: @proj_id)
           @wallet.update(balance: @balance - @reject)
         end
       end

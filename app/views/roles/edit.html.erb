@@ -22,7 +22,23 @@
 		<div>
 			<br>
 			<%= hidden_field_tag "role[permission_ids][]", nil %>
-			<% Permission.all.each do |permission| %>
+			<div class="opera">Create</div>
+			<% Permission.where("subject_class like ?","%_create").each do |permission| %>
+				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permission_ids.include?(permission.id) %>
+				<%= permission.name %>
+			<% end %>
+			<div class="opera">Delete</div>
+			<% Permission.where("subject_class like ?","%_destroy").each do |permission| %>
+				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permission_ids.include?(permission.id) %>
+				<%= permission.name %>
+			<% end %>
+			<div class="opera">Update</div>
+			<% Permission.where("subject_class like ?","%_edit").each do |permission| %>
+				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permission_ids.include?(permission.id) %>
+				<%= permission.name %>
+			<% end %>
+			<div class="opera">Read</div>
+			<% Permission.where("subject_class like ?","%read").each do |permission| %>
 				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permission_ids.include?(permission.id) %>
 				<%= permission.name %>
 			<% end %>
@@ -35,3 +51,14 @@
 </div>
 </main>
 </div>
+<style >
+	.opera {
+		margin: 10px 0px;
+		color: red;
+	}
+	#role_permission_ids_ {
+
+		margin-right: 2px;
+		margin-left: 8px;
+	}
+</style>

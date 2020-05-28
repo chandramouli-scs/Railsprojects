@@ -8,15 +8,18 @@
 	    <tr>
 	      <th scope="col">id</th>
 	      <th scope="col">Created at</th>
+	      <th scope="col">Project name</th>
 	      <th scope="col">Transaction type</th>
 	      <th scope="col">Balance</th>
+	      <th scope="col">Current balance</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	<% @user.transactions.all.each do |trans| %>
+	  	<% @user.transactions.order(id: :desc).all.each do |trans| %>
 	    <tr>
 	      <td><%= trans.id %></td>
-	      <td><%= trans.created_at %></td>
+	      <td><%= trans.created_at.strftime("%d %B,%Y - %A") %></td>
+	      <td><%= trans.project.project_name.camelcase %></td>
 	      <% if trans.status == "approve" %>
 	      	<td><span class="text-success">Credit</span></td>
 	      <% elsif trans.status == "reject" %>
@@ -27,13 +30,27 @@
 	      <% elsif trans.status == "reject" %>
 	      	<td>-<span class="text-danger"><%= trans.coins %></span></td>
 	      <% end %>
+	      <td><%= trans.instance_bal %>
+	      	  <% if trans.status == "approve" %>
+	      	  <span class="text-success"> + </span>
+		      <% elsif trans.status == "reject" %>
+		       <span class="text-danger"> - </span>
+		      <% end %>
+	      	<%= trans.coins %> = 
+	      	<% if trans.status == "approve" %>
+	      	<span class="text-success"><%=  trans.instance_bal + trans.coins %></span></td>
+	      <% elsif trans.status == "reject" %>
+	      <span class="text-danger"> <%= trans.instance_bal - trans.coins %></span></td>
+	      <% end %>
 	    </tr>
 	    <% end %>
 	    <tr>
 	    	<th></th>
 	    	<th></th>
+	    	<th></th>
 	    	<th>Total Balance</th>
 	    	<th><%= @user.wallet.balance %></th>
+	    	<th></th>
 	    </tr>
 	  </tbody>
 	</table>
