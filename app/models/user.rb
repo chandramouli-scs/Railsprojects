@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	attr_accessor :gauth_token
 
   #create wallet after create user
   after_create :create_wallet
@@ -19,8 +20,14 @@ class User < ApplicationRecord
   validates :last_name,  presence: true
   validates :phone_number,  presence: true
 
-  devise :authy_authenticatable, :database_authenticatable, :registerable,
+  devise :google_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable,
          :timeoutable, :trackable
+
+  #if user has no gauth this code generates gauth_secret
+  User.where(:gauth_secret => nil).find_each do |user|
+   user.send(:assign_auth_secret)
+   user.save!
+  end
 
 end

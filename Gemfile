@@ -22,7 +22,6 @@ gem 'devise_google_authenticator', path: 'cloned_gems/devise_google_authenticato
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'cancancan'
-gem 'devise-authy'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pagy'
