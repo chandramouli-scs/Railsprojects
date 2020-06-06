@@ -6,7 +6,6 @@ class Ability
       if user.super_admin?
         # can permission.subject_class.to_sym, permission.action.to_sym
         can :manage, :all
-        # can permission.action.to_sym, permission.subject_class.to_sym
       else
         user.role.permissions.each do |permission|
             can permission.subject_class.to_sym, permission.action.to_sym

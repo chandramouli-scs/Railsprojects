@@ -25,15 +25,9 @@
 	      <% if trans.status == "approve" %>
 	      	<td> <span class="text-success"><%= trans.coins %></span></td>
 	      <% elsif trans.status == "reject" %>
-	      	<td>-<span class="text-danger"><%= trans.coins %></span></td>
+	      	<td><span class="text-danger"><%= trans.coins %></span></td>
 	      <% end %>
-	      <td><%= trans.instance_bal %> 
-	      		 <% if trans.status == "approve" %>
-			      	<span class="text-success">+</span>
-			      <% elsif trans.status == "reject" %>
-			      	<span class="text-danger">-</span>
-			      <% end %>
-	      	<%= trans.coins %> = 
+	      <td>
 	      		<% if trans.status == "approve" %>
 	      			<span class="text-success"><%= trans.instance_bal + trans.coins %></span>
 			    <% elsif trans.status == "reject" %>

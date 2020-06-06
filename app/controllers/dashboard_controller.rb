@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
-	before_action :authenticate_user!
+
+ #authenticate user	
+ before_action :authenticate_user!
+ 
   def projectsdash
   end
 

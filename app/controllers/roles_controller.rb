@@ -1,5 +1,7 @@
 class RolesController < ApplicationController
 
+	#authenticate admin
+	before_action :authenticate_admin!
 	def index 
 	  @roles = Role.all
 	  @admins = Admin.where(super_admin: false).order(id: :asc)

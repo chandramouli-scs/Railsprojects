@@ -1,12 +1,14 @@
 class ModeldetailsController < ApplicationController
-  before_action :load_permissions
-
-    include Pagy::Backend
-  helper_method :sort_column, :sort_direction
+  
+  #authenticate admin
   before_action :authenticate_admin!
+
+
   def admins
-    @pagy, @admins = pagy(Admin.order(sort_column + " " + sort_direction).where("email LIKE ?", "%#{params[:search]}%"), items: 10)
+    @admins = Admin.all
+    #params from form
     @admins1 = Admin.where(id: params[:admin_id])
+    #export to csv
     respond_to do |format|
       format.html 
       attributes = %w{id email created_at}
@@ -17,13 +19,16 @@ class ModeldetailsController < ApplicationController
           end
       end
       format.csv { send_data admin_csv }
+      #export to pdf format 
       format.pdf {render template: 'modeldetails/admins1', pdf: 'admins1'}
     end
   end
 
   def users
     @users = User.all.order(id: "asc")
+    #params from form
     @users1 = User.where(id: params[:user_id])
+    #export to csv
     respond_to do |format|
       format.html 
       attributes = %w{id email first_name last_name phone_number user_name}
@@ -34,6 +39,7 @@ class ModeldetailsController < ApplicationController
           end
       end
       format.csv { send_data user_csv }
+      #export to pdf format 
       format.pdf {render template: 'modeldetails/users1', pdf: 'users1'}
     end
   end
@@ -44,8 +50,10 @@ class ModeldetailsController < ApplicationController
   end
 
   def organisations
-    @pagy, @organisations = pagy(Organisation.order(sort_column + " " + sort_direction).where("organisation_name LIKE ?", "%#{params[:search]}%"), items: 10)
+    @organisations = Organisation.all
+    #params from form
     @organisations1 = Organisation.where(id: params[:organisation_id])
+    #export to csv
     respond_to do |format|
       format.html 
       attributes = %w{id organisation_name created_at}
@@ -56,13 +64,16 @@ class ModeldetailsController < ApplicationController
           end
       end
       format.csv { send_data org_csv }
+      #export to pdf format 
       format.pdf {render template: 'modeldetails/organisations1', pdf: 'organisations1'}
     end
   end
 
   def projects
-    @pagy, @projects = pagy(Project.order(sort_column + " " + sort_direction).where("project_name LIKE ?", "%#{params[:search]}%"), items: 10)
+    @projects = Project.all
+    #params from form
     @projects1 = Project.where(id: params[:project_id])
+    #export to csv
     respond_to do |format|
       format.html 
       attributes = %w{id project_name created_at}
@@ -73,6 +84,7 @@ class ModeldetailsController < ApplicationController
         end
       end
       format.csv { send_data project_csv }
+      #export to pdf format 
       format.pdf {render template: 'modeldetails/projects1', pdf: 'projects1'}
     end
     
@@ -122,8 +134,10 @@ class ModeldetailsController < ApplicationController
 
   
   def tasks
-    @pagy, @tasks = pagy(Task.order(sort_column + " " + sort_direction).where("task_name LIKE ?", "%#{params[:search]}%"), items: 10)
+    @tasks = Task.all
+    #params from form
     @tasks1 = Task.where(id: params[:task_id])
+    #export to csv
     respond_to do |format|
       format.html 
       attributes = %w{id task_name}
@@ -134,6 +148,7 @@ class ModeldetailsController < ApplicationController
           end
       end
       format.csv { send_data task_csv }
+      #export to pdf format 
       format.pdf {render template: 'modeldetails/tasks1', pdf: 'tasks1'}
     end
   end
@@ -290,14 +305,14 @@ end
 
   def projectstatus_update
     @project = Project.find(params[:id])
+    #params from form
     @status = params[:project][:status]
-    # puts "------------------"
-    # puts @status
     @user = @project.user_id
     @wallet = Wallet.where(user_id: @user)
     @balance = @wallet.first.balance
     @proj_id = @project.id
     @length = @project.project_name.length
+    #if condition for dynamic wallet credit to user
     if @length >= 10
       @approve = 50.6
     elsif @length >=5 && @length <=7
@@ -306,7 +321,7 @@ end
       @approve = 20.7
     end
     @reject = 10
-
+    #after update project approval a new transacation is created
     if @project.update(projectstatus_params)
         ActiveRecord::Base.transaction do
         if @status == "approve"
@@ -332,6 +347,7 @@ end
   end
 
   def projectstatus_reject_update
+    # params from form 
     @project = Project.find(params[:id])
     @status = params[:project][:status]
     @commit = params[:commit]
@@ -340,6 +356,7 @@ end
     @balance = @wallet.first.balance
     @proj_id = @project.id
     @length = @project.project_name.length
+    #if condition for dynamic wallet credit to user
     if @length >= 10
       @approve = 50.6
     elsif @length >=5 && @length <=7
@@ -348,7 +365,7 @@ end
       @approve = 20.7
     end
     @reject = 10
-
+    #after update of user project approval a new transaction is created 
     if @project.update(projectstatus_reject_params)
       ActiveRecord::Base.transaction do
         if @status == "approve"

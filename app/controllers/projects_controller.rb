@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-	before_action :authenticate_user! # for knowing , only: [:edit, :show, :create]
-  #before_action :authenticate_admin!, only: [:show]
+  #authenticate user
+	before_action :authenticate_user!
   def new
   	@project = current_user.projects.build
   	@user = current_user

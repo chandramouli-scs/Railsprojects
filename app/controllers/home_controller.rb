@@ -7,8 +7,8 @@ class HomeController < ApplicationController
   		redirect_to admindashboard_home_path
   	end
   end
+  
   def dashboard
-  	#@project = current_user.projects.find(params[:id])
   end
 
   def admindashboard

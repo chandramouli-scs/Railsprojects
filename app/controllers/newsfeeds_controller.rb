@@ -1,5 +1,7 @@
 class NewsfeedsController < ApplicationController
-  	before_action :authenticate_user!
+  
+  #authenticate user  
+  before_action :authenticate_user!
 
   def index
   	@newsfeeds = Newsfeed.all.order(created_at: :desc)

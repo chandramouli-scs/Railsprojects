@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+
+	#this code is to override the registrations sign up params for to include our new input fields
 	private
 
 	def sign_up_params
