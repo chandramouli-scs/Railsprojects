@@ -25,6 +25,8 @@ gem 'cancancan'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pagy'
+# gem 'pry-rails', :group => :development
+gem 'hirb'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -38,11 +40,8 @@ gem 'pagy'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem "paperclip", "~> 6.0.0"
 
-group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
-
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -62,3 +61,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Please clean up duplicated gems if any.
+# Feel free to remove gems that you don't want to use or if they conflict with other gem dependencies. (you might need to update .pryrc also)
+group :development, :test do
+end
