@@ -19,7 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'devise_google_authenticator', path: 'cloned_gems/devise_google_authenticator-compatibilites-rails5'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '> 1.0.0'
 gem 'dotenv-rails'
 gem 'cancancan'
 gem 'wicked_pdf'
@@ -27,7 +27,8 @@ gem 'wkhtmltopdf-binary'
 gem 'pagy'
 # gem 'pry-rails', :group => :development
 gem 'hirb'
-
+gem 'base58'
+gem 'bitcoin-ruby'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
