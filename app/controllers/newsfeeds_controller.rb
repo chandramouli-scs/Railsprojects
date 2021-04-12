@@ -1,5 +1,5 @@
 class NewsfeedsController < ApplicationController
-  
+  before_action :hello_user
   #authenticate user  
   before_action :authenticate_user!
 
